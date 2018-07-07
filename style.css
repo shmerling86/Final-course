@@ -56,26 +56,11 @@ img{
     max-width: 100%;
 }
 
+#List{
+    font-size: 1.2rem
+}
 
 @media screen and (max-width:415px){
-    /* #home{
-        margin-top: 270px;
-    }
-
-    #List{
-    margin-top: 270px;
-    }
-
-    #About{
-        margin-top: 270px;
-    }
-
-    #Partner{
-        margin-top: 270px;
-    }
-
-    #Contact{
-        margin-top: 270px;
-    }  */
+    
 
 }
