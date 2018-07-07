@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HAPPY-BABY</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <script src="app.js"></script>
+    <script src="myCtrl.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav ">
+                
+                    <!-- add some angular -->
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="#Home" ng-click='x1=isClicked()' ng-class="{'active': x1}">Welcome</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#List" ng-click='x2=isClicked()' ng-class="{'active': x2}">My List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#About" ng-click='x3=isClicked()' ng-class="{'active': x3}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Partners" ng-click='x4=isClicked()' ng-class="{'active': x4}">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Contact" ng-click='x5=isClicked()' ng-class="{'active': x5}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="Home">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-5 mt-5">
+                    <div class="mb-5 mt-5" id="home">
+                    </div>
+                    <div class="text-center font-weight-bold">
+                        <button style="font-size: 1.8rem" class="btn btn-primary">Get started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="List" class="bg-light">
+        <div class="container">
+            <h1 class="text-muted ">My List</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-1">
+                        <img class="card-img-top" src="download (1).jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">Accessories For her</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-1">
+                        <img class="card-img-top" src="babies-bottles-38425410.jpg" alt="Card image cap">
+                        <div class="card-body mt-4">
+                            <h5 class="card-title font-weight-bold">Baby accessories</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-1">
+                        <img class="card-img-top" src="21670456-illustration-pregnancy.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">9 month accessories</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="About" class="">
+        <div class="container">
+            <h1 class="text-muted">About</h1>
+            <hr>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
+                minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.Lorem
+                ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
+                minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
+                minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.Lorem
+                ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
+                minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.</p>
+            </div>
+    </section>
+
+    <section id="Partners" class="bg-light">
+        <div class="container">
+            <h1 class="text-muted">Partners</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 m-5">
+                    <img src="1280px-צומת_ספרים.svg.png" alt="" >
+                    <img src="motsesim.png" alt="" >
+                    <img src="download (1).png" alt="" >
+                    <img src="download.png" alt="" >
+                    <img src="6ca953037d5e9cc6ccaa8ffe8eb9b84f.jpg" alt="" >
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="Contact" class="">
+        <div class="container">
+            <h1 class="text-muted">Contact</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" placeholder="John Dow" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">Email:</label>
+                            <input type="email" placeholder="name@example.com" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Content</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write here.."></textarea>
+                        </div>
+                        <div class="form-group" id="btn-container">
+                            <button type="button" class="btn btn-outline-primary font-weight-bold ">Send</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="card-footer bg-dark fixed-bottom text-muted text-center">
+        CODED BY LIOR-SHMERLING
+    </div>
+
+
+</body>
+
+</html>
