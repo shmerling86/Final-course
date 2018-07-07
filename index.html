@@ -19,32 +19,38 @@
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <script src="app.js"></script>
     <script src="myCtrl.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="jquery.js"></script>
 </head>
 
 <body ng-controller="myCtrl">
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="nav navbar-nav ">
-                
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ">
+
                     <!-- add some angular -->
 
                     <li class="nav-item">
                         <a class="nav-link " href="#Home" ng-click='x1=isClicked()' ng-class="{'active': x1}">Welcome</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#List" ng-click='x2=isClicked()' ng-class="{'active': x2}">My List</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#About" ng-click='x3=isClicked()' ng-class="{'active': x3}">About</a>
                     </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#List" ng-click='x2=isClicked()' ng-class="{'active': x2}">My List</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#Partners" ng-click='x4=isClicked()' ng-class="{'active': x4}">Partners</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#Contact" ng-click='x5=isClicked()' ng-class="{'active': x5}">Contact</a>
                     </li>
@@ -54,52 +60,16 @@
     </nav>
 
     <section id="Home">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-5 mt-5">
                     <div class="mb-5 mt-5" id="home">
                     </div>
                     <div class="text-center font-weight-bold">
-                        <button style="font-size: 1.8rem" class="btn btn-primary">Get started</button>
+                        <a href="#List">
+                            <button style="font-size: 1.8rem" class="btn btn-primary">Get started</button>
+                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="List" class="bg-light">
-        <div class="container">
-            <h1 class="text-muted ">My List</h1>
-            <hr>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-1">
-                        <img class="card-img-top" src="download (1).jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title font-weight-bold">Accessories For her</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-1">
-                        <img class="card-img-top" src="babies-bottles-38425410.jpg" alt="Card image cap">
-                        <div class="card-body mt-4">
-                            <h5 class="card-title font-weight-bold">Baby accessories</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-1">
-                        <img class="card-img-top" src="21670456-illustration-pregnancy.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title font-weight-bold">9 month accessories</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -117,7 +87,26 @@
                 minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.Lorem
                 ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
                 minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.</p>
+        </div>
+    </section>
+
+    <section id="List" class="bg-light">
+        <div class="container">
+            <h1 class="text-muted ">My List</h1>
+            <hr>
+
+            <div class="container" id="index2">
+
+                <div class="text-muted">
+                    You dont have any lists..
+                </div>
+                <div class="text-center font-weight-bold">
+                    <button style="font-size: 1.8rem" class="btn btn-primary" id="create-btn">Create👶</button>
+                </div>
+
             </div>
+        </div>
+        <!-- LOAD FROM INDEX2.HTML -->
     </section>
 
     <section id="Partners" class="bg-light">
@@ -126,11 +115,11 @@
             <hr>
             <div class="row">
                 <div class="col-md-12 m-5">
-                    <img src="1280px-צומת_ספרים.svg.png" alt="" >
-                    <img src="motsesim.png" alt="" >
-                    <img src="download (1).png" alt="" >
-                    <img src="download.png" alt="" >
-                    <img src="6ca953037d5e9cc6ccaa8ffe8eb9b84f.jpg" alt="" >
+                    <img src="1280px-צומת_ספרים.svg.png" alt="">
+                    <img src="motsesim.png" alt="">
+                    <img src="download (1).png" alt="">
+                    <img src="download.png" alt="">
+                    <img src="6ca953037d5e9cc6ccaa8ffe8eb9b84f.jpg" alt="">
                 </div>
             </div>
         </div>
