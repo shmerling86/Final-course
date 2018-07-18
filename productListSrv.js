@@ -17,7 +17,7 @@ app.service('productListSrv', function ($http, $q) {
 
         $http.get('products.json').then(function (response) {
             response.data.forEach(function (plainObj) {
-                var product = new Product(productName, description, price, zone, brand, image);
+                var product = new Product(plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image);
                 products.push(product);
             }, function (response) {
                 console.error(response);
