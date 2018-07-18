@@ -23,7 +23,7 @@ app.service('productListSrv', function ($http, $q) {
                 console.error(response);
                 async.reject([]);
             });
-            async.resolve(actors);
+            async.resolve(products);
         });
         return async.promise;
     };
