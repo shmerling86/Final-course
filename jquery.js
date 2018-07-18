@@ -1,9 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-    $("#create-btn").click(function(){
-        $("#index2").load("index-x.html");
+    $("#create-btn").click(function () {
         $("#index2").load("index1.html");
     });
-
-    
 });
+
+
