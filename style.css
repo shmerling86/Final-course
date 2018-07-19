@@ -6,16 +6,13 @@ body{
 section{
     min-height: 100vh;
     padding-top: 120px;
-    margin-top:2rem;
+    /* margin-top:2rem; */
 }
 
 h1{
     display: block;
 }
 
-.card{
-    height: 60vh;
-}
 
 p{
     line-height: 2em;
@@ -51,11 +48,16 @@ img{
 
 #home{
     height: 50vh;
-    background-image: linear-gradient(rgba(255, 254, 254, 0.5),rgba(223, 223, 223, 0.4)), url(cdcadbe371756c939a4c5596b21704ed.png );
+    /* background-image:  url(cdcadbe371756c939a4c5596b21704ed.png );
     background-repeat: no-repeat;
     background-position: center center;
-    max-width: 100%;
+    max-width: 100%; */
 }
+
+#home,#partners{background-color:rgb(248, 249, 250);}
+
+
+#about,#contact{background-color:rgba(232, 229, 229, 0.6);}
 
 #List{
     font-size: 1.2rem;

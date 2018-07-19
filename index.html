@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My-List</title>
+    <title>My List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
@@ -24,7 +24,7 @@
     <script src="productCtrl.js"></script>
     <script src="productListSrv.js"></script>
     <script src="jquery.js"></script>
-     
+
 </head>
 
 <body ng-controller="productCtrl">
@@ -35,20 +35,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav navbar-nav ">
+                <ul class="navbar-nav mr-auto">
 
                     <!-- add some angular -->
 
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link " href="#Home">Welcome</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#About">About</a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#List">My List</a>
                     </li>
 
                     <li class="nav-item">
@@ -59,18 +55,37 @@
                         <a class="nav-link" href="#Contact">Contact</a>
                     </li>
                 </ul>
+
+                <ul class="navbar-nav">
+
+                    <li class="nav-item active">
+                        <a class="nav-link">LOGIN</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
     <!-- <ng-view></ng-view> -->
 
-    <section id="Home">
+    <section id="home">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-5 mt-5">
                     <div class="mb-5 mt-5" id="home">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer">Someone famous in
+                                <cite title="Source Title">Source Title</cite>
+                            </footer>
+                        </blockquote>
                     </div>
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">Someone famous in
+                            <cite title="Source Title">Source Title</cite>
+                        </footer>
+                    </blockquote>
                     <div class="text-center font-weight-bold">
                         <a href="#List">
                             <button style="font-size: 1.8rem" class="btn btn-primary">Get started</button>
@@ -81,11 +96,11 @@
         </div>
     </section>
 
-    <section id="About" class="">
+    <section id="about" class="">
         <div class="container">
             <h1 class="text-muted">About</h1>
             <hr>
-            <p id="image-hear"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
                 minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.Lorem
                 ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
                 minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.</p>
@@ -112,10 +127,9 @@
 
             </div>
         </div>
-        <!-- LOAD FROM INDEX2.HTML -->
-    </section>
+    </section> 
 
-    <section id="Partners" class="bg-light">
+    <section id="partners" class="bg-light">
         <div class="container">
             <h1 class="text-muted">Partners</h1>
             <hr>
@@ -134,20 +148,20 @@
 
     </section>
 
-    <section id="Contact">
+    <section id="contact">
         <div class="container">
-            <h1 class="text-muted" >Contact</h1>
+            <h1 class="text-muted">Contact</h1>
             <hr>
-            <div class="row">
+            <div class="row" id="image-hear">
                 <div class="col-md-12">
-                    <form >
+                    <form>
                         <div class="form-group">
                             <label for="name">Name:</label>
                             <input type="text" placeholder="israel israeli" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Email">Email:</label>
-                            <input type="email"  placeholder="israel@israeli.com" class="form-control">
+                            <input type="email" placeholder="israel@israeli.com" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Content</label>
