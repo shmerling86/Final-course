@@ -48,10 +48,10 @@ img{
 
 #home{
     height: 50vh;
-    /* background-image:  url(cdcadbe371756c939a4c5596b21704ed.png );
+    background-image:  url(cdcadbe371756c939a4c5596b21704ed.png );
     background-repeat: no-repeat;
     background-position: center center;
-    max-width: 100%; */
+    max-width: 100%;
 }
 
 #home,#partners{background-color:rgb(248, 249, 250);}
