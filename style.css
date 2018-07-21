@@ -13,6 +13,9 @@ h1{
     display: block;
 }
 
+dd{
+    font-size: 0.8em;
+}
 
 p{
     line-height: 2em;
@@ -48,7 +51,7 @@ img{
 
 #home{
     height: 50vh;
-    background-image:  url(cdcadbe371756c939a4c5596b21704ed.png );
+    background-image:  url(img/cdcadbe371756c939a4c5596b21704ed.png );
     background-repeat: no-repeat;
     background-position: center center;
     max-width: 100%;
@@ -64,7 +67,7 @@ img{
 }
 
 #image-hear{
-    background-image: url(21670456-illustration-pregnancy.jpg);
+    background-image: url(img/21670456-illustration-pregnancy.jpg);
     background-repeat: no-repeat;
     margin: 0 auto;
     width:100%;

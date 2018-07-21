@@ -16,10 +16,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-route.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-route.js"></script>
 
-
-    <!-- <script src="jquery.js"></script> -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <script src="app.js"></script>
@@ -29,7 +27,7 @@
 </head>
 
 <body ng-controller="productCtrl">
-    
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -43,7 +41,7 @@
                         </a>
                     </li>
 
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
                     </li>
 
@@ -60,21 +58,22 @@
 
                     <li class="nav-item active">
                         <a href="login.html" class="nav-link">LOGIN</a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    
+    <!-- <ng-view></ng-view> -->
+
     <section id="home">
         <div class="container" id="loadHere">
             <div class="row">
                 <div class="col-md-12 mb-5 mt-5">
                     <div class="mb-5 mt-5" id="home">
-                        
+
                     </div>
-                    
+
                     <div class="text-center font-weight-bold">
                         <a href="#!/product">
                             <button style="font-size: 1.8rem" class="btn btn-primary" id="create-btn">Get started</button>
@@ -84,44 +83,35 @@
             </div>
         </div>
     </section>
-    
-    
-<div class="container">
 
+    <div class="container">
+
+        <p class="text-center">Check products and click on the ADD button
+            <hr>
+        </p>
         <div class="row mt-5">
             <div class="col-md-2 mx-auto">
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="search" placeholder="Search your product..">
                 </div>
             </div>
-    
-            <div class="col-md-2 mx-auto">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> SORT </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" id="#ForHer">All</a>
-                        <a class="dropdown-item" id="#ForHer">For her</a>
-                        <a class="dropdown-item" id="#BabyZone">Baby zone</a>
-                        <a class="dropdown-item" id="#9Month">9 month</a>
-                    </div>
-                </div>
-            </div>
         </div>
-    
+
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="accordion" id="accordionExample">
-                    
+
                     <div class="card" ng-repeat="product in products | filter : {productName : search}">
-                           
                         <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+
                             <h5 class="mb-0">
-                                <button class="btn btn-link" type="button">{{product.productName}}
-                                    </button>
+                                <button class="btn btn-link" type="button">
+                                    <input type="checkbox" ng-model="bool" ng-change="addToCart($index)" class="mr-3">{{product.productName}}
+                                </button>
                             </h5>
                         </div>
-    
+
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 <dl class="row">
@@ -129,18 +119,18 @@
                                         <dt class="col-sm-3">Name:</dt>
                                         <dd class="col-sm-9">{{product.productName}}</dd>
 
-    
+
                                         <dt class="col-sm-3">Description</dt>
                                         <dd class="col-sm-9">
                                             <p>{{product.description}}</p>
                                         </dd>
-    
+
                                         <dt class="col-sm-3">Zone:</dt>
                                         <dd class="col-sm-9">{{product.zone}}</dd>
-    
+
                                         <dt class="col-sm-3 text-truncate">Brand</dt>
                                         <dd class="col-sm-9">{{product.brand}}</dd>
-    
+
                                         <dt class="col-sm-3">Price</dt>
                                         <dd class="col-sm-9">{{product.price}}</dd>
                                     </div>
@@ -154,23 +144,50 @@
                             </div>
                         </div>
                     </div>
-    
+
                 </div>
             </div>
         </div>
-    
+
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="text-center font-weight-bold">
-                    <button style="font-size: 1.8rem" class="btn btn-info mx-auto" id="finish-btn">FINISH</button>
+                    <a href="#">
+                        <button style="font-size: 1.8rem" class="btn btn-info mx-auto">ADD</button>
+                    </a>
                 </div>
             </div>
         </div>
-    
     </div>
 
-    <!-- <ng-view></ng-view> -->
-    
+    <div class="container">
+        <p class="text-center">Approve your list by the CONFIRM button
+            <hr>
+        </p>
+
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <ul class="list-group">
+                        <!-- ng-repeat="select in selected" -->
+                    <li class="list-group-item" >test</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <div class="row mt-5">
+                    <div class="col-md-12">
+                        <div class="text-center font-weight-bold">
+                            <a href="#">
+                                <button style="font-size: 1.8rem" class="btn btn-info mx-auto">CONFIRM</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- <section id="about" class="">
         <div class="container">
             <h1 class="text-muted">About</h1>
@@ -184,9 +201,9 @@
                 ipsum dolor sit amet consectetur adipisicing elit. Autem similique unde quam eaque saepe quod, repudiandae
                 minima perspiciatis molestias ipsa officia corrupti, hic nulla porro ipsum sequi labore cupiditate mollitia.</p>
         </div>
-    </section>
+    </section> -->
 
-    <section id="List" class="bg-light">
+    <!-- <section id="List" class="bg-light">
         <div class="container">
             <h1 class="text-muted ">My List</h1>
             <hr>
@@ -202,21 +219,21 @@
 
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section id="partners" class="bg-light">
+    <!-- <section id="partners" class="bg-light">
         <div class="container">
             <h1 class="text-muted">Partners</h1>
             <hr>
             <div class="row">
                 <div class="col-md-12 m-5">
-                    <img src="motsesim.png" alt="">
-                    <img src="unnamed.jpg" alt="">
-                    <img src="download (1).png" alt="">
-                    <img src="download.png" alt="">
-                    <img src="6ca953037d5e9cc6ccaa8ffe8eb9b84f.jpg" alt="">
-                    <img src="Delta_Israel_New_Logo.svg.png" alt="">
-                    <img src="1280px-צומת_ספרים.svg.png" alt="">
+                    <img src="img/motsesim.png" alt="">
+                    <img src="img/unnamed.jpg" alt="">
+                    <img src="img/download (1).png" alt="">
+                    <img src="img/download.png" alt="">
+                    <img src="img/6ca953037d5e9cc6ccaa8ffe8eb9b84f.jpg" alt="">
+                    <img src="img/Delta_Israel_New_Logo.svg.png" alt="">
+                    <img src="img/1280px-צומת_ספרים.svg.png" alt="">
                 </div>
             </div>
         </div>
@@ -251,10 +268,10 @@
             </div>
         </div>
     </section>
-
-    <div class="card-footer bg-dark fixed-bottom text-muted text-center">
+-->
+    <!-- <div class="card-footer bg-dark fixed-bottom text-muted text-center">
         CODED BY LIOR-SHMERLING
-    </div> -->
+    </div>  -->
 
 
 </body>

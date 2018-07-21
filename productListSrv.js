@@ -15,11 +15,10 @@ app.service('productListSrv', function ($http, $q) {
     
     function readFile() {
         var async = $q.defer();
-        
+    
         $http.get('products.json').then(function (response) {
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image);
-                console.log(product.productName);
                 products.push(product);
             }, function (response) {
                 console.error(response);
