@@ -102,17 +102,17 @@
                 <div class="accordion" id="accordionExample">
 
                     <div class="card" ng-repeat="product in products | filter : {productName : search}">
-                        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#{{product.productName}}" aria-expanded="false" aria-controls="{{product.productName}}">
 
 
                             <h5 class="mb-0">
                                 <button class="btn btn-link" type="button">
-                                    <input type="checkbox" ng-model="bool" ng-change="addToCart($index)" class="mr-3">{{product.productName}}
+                                    <input type="checkbox" ng-model="product.isActive" class="mr-3">{{product.productName}}
                                 </button>
                             </h5>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="{{product.productName}}" class="collapse" aria-labelledby="headingOne">
                             <div class="card-body">
                                 <dl class="row">
                                     <div class="col-sm-10">
@@ -152,8 +152,8 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="text-center font-weight-bold">
-                    <a href="#">
-                        <button style="font-size: 1.8rem" class="btn btn-info mx-auto">ADD</button>
+                    <a>
+                        <button style="font-size: 1.8rem" class="btn btn-info mx-auto" ng-click ="addToCart()">ADD</button>
                     </a>
                 </div>
             </div>
@@ -167,14 +167,9 @@
 
         <div class="row mt-5">
             <div class="col-md-8 mx-auto">
-                <ul class="list-group">
-                        <!-- ng-repeat="select in selected" -->
-                    <li class="list-group-item" >test</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
+                <ul class="list-group" >
+                    <li class="list-group-item"  ng-repeat="product in products">{{product.description}}</li>
+                 </ul>
                 <div class="row mt-5">
                     <div class="col-md-12">
                         <div class="text-center font-weight-bold">
