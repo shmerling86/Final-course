@@ -13,6 +13,7 @@ app.config(function ($routeProvider) {
 
         })
         .when("/login", {
+            templateUrl: "login.html"
 
         })
         .when("/signup", {
