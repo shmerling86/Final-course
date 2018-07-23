@@ -1,5 +1,6 @@
 app.service('productListSrv', function ($http, $q) {
 
+    var SERVER = 'https://final-course-xqysoipzwa.now.sh';
 
     function Product(productName, description, price, zone, brand, image, isActive) {
         this.productName = productName;
@@ -17,7 +18,7 @@ app.service('productListSrv', function ($http, $q) {
     function readFile() {
         var async = $q.defer();
     
-        $http.get('products.json').then(function (response) {
+        $http.get(SERVER + '/products').then(function (response) {
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image, plainObj.isActive);
                 products.push(product);
@@ -31,6 +32,7 @@ app.service('productListSrv', function ($http, $q) {
     };
     
     return {
-        readFile: readFile
+        readFile: readFile,
+        SERVER: SERVER
     }
 });

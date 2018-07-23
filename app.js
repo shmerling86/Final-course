@@ -5,14 +5,13 @@ var app = angular.module('myApp', ["ngRoute"]);
 
 app.config(function ($routeProvider) {
     $routeProvider
-        .when("/", {
+        .when('/', {
             templateUrl: "index.html",
             controller: "productCtrl"
         })
-        // .when("/product", {
-        //     templateUrl: "products.html",
-        //     controller: "productimCtrl"
-        // })
+        .when("/product", {
+            templateUrl: "products.html"
+        })
         .otherwise({
             redirectTo: '/'
         });
