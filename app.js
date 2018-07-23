@@ -1,16 +1,22 @@
-// var app = angular.module('myApp', []);
-
-
 var app = angular.module('myApp', ["ngRoute"]);
 
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: "index.html",
-            controller: "productCtrl"
+            templateUrl: "home.html"
         })
-        .when("/product", {
-            templateUrl: "products.html"
+        .when("/products", {
+            templateUrl: "products.html",
+            controller: 'productCtrl'
+        })
+        .when("/list", {
+
+        })
+        .when("/login", {
+
+        })
+        .when("/signup", {
+
         })
         .otherwise({
             redirectTo: '/'
