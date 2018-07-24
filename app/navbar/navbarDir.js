@@ -1,5 +1,5 @@
 app.directive('listNavbar', function () {
     return {
-        templateUrl: 'navbar.html'
+        templateUrl: 'app/navbar/navbar.html'
     }
 })
