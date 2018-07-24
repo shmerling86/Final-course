@@ -17,7 +17,7 @@ app.config(function ($routeProvider) {
 
         })
         .when("/signup", {
-            templateUrl: "app/singup/singup.html"
+            templateUrl: "app/signup/signup.html"
 
         })
         .otherwise({
