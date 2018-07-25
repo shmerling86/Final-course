@@ -1,4 +1,4 @@
-app.service('productListSrv', function ($http, $q) {
+app.factory('productListSrv', function ($http, $q) {
 
     var SERVER = 'https://final-course-xqysoipzwa.now.sh';
 

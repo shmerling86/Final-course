@@ -6,7 +6,6 @@ body{
 section{
     min-height: 100vh;
     padding-top: 120px;
-    /* margin-top:2rem; */
 }
 
 h1{
@@ -32,12 +31,12 @@ hr {
 } 
 
 form{
-    border: 1px solid rgb(0, 0, 0, 0.1);
+    border: 1px solid rgb(0, 120, 248,0.3);
     padding: 10px;
     margin:5px auto;
     width:67%;
     position: relative;
-
+    font-size: 0.5em;
 }
 
 
@@ -62,18 +61,9 @@ img{
 
 #about,#contact{background-color:rgba(232, 229, 229, 0.6);}
 
-#List{
-    font-size: 1.2rem;
-}
 
 #image-hear{
-    background-image: url(app/img//21670456-illustration-pregnancy.jpg);
-    background-repeat: no-repeat;
-    margin: 0 auto;
-    width:100%;
-}
-
-@media screen and (max-width:415px){
-    
-
+    background-image: url(app/img/31670456-illustration-pregnancy.jpg);
+    background-position: center center;
+    max-width:500px;
 }
