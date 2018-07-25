@@ -18,7 +18,9 @@ app.config(function ($routeProvider) {
 
         })
         .when("/mylink", {
-            templateUrl: "app/mylink/mylink.html"
+            templateUrl: "app/mylink/mylink.html",
+            controller: 'randomUrlCtrl'
+
 
         })
         .when("/signup", {

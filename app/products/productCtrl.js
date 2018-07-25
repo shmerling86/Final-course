@@ -23,10 +23,10 @@ app.controller('productCtrl', function ($scope, $log, productListSrv) {
     };
 
     $scope.hoverIn = function () {        
-        $scope.hoverEdit = true;
+        this.hoverEdit = true;
     };
     $scope.hoverOut = function () {
-        $scope.hoverEdit = false;
+        this.hoverEdit = false;
     };
 
 
