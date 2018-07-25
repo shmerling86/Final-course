@@ -1,12 +1,8 @@
 <list-navbar></list-navbar>
 
 <section>
-<div class="container">
-
-        <p class="text-center">Check products and click on the ADD button
-            <hr>
-        </p>
-        <div class="row mt-5">
+    <div class="container">
+        <div class="row">
             <div class="col-md-2 mx-auto">
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="search" placeholder="Search your product..">
@@ -19,14 +15,56 @@
                 <div class="accordion" id="accordionExample">
 
                     <div class="card" ng-repeat="product in products | filter : {productName : search}">
-                        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#{{product.productName}}" aria-expanded="false" aria-controls="{{product.productName}}">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <input type="checkbox" ng-model="product.isAddToCart">
+                                    <button class="btn btn-link" type="button" id="headingOne" data-toggle="collapse" data-target="#{{product.productName}}"
+                                        aria-expanded="false" aria-controls="{{product.productName}}">
+                                        {{product.productName}}
+                                    </button>
+                                </div>
+                                <div class="col-sm-2 ml-auto">
+                                    <img id="produntImg" ng-src="{{product.image}}" data-toggle="modal" data-target=".{{product.productName}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade {{product.productName}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="card-body">
+                                        <dl class="row">
+                                            <div class="col-sm-10">
+                                                <dt class="col-sm-3">Name:</dt>
+                                                <dd class="col-sm-9"> {{product.productName}}</dd>
 
 
-                            <h5 class="mb-0">
-                                <button class="btn btn-link" type="button">
-                                    <input type="checkbox" ng-model="product.isActive" class="mr-3">{{product.productName}}
-                                </button>
-                            </h5>
+                                                <dt class="col-sm-3">Description</dt>
+                                                <dd class="col-sm-9">
+                                                    <p>{{product.description}}</p>
+                                                </dd>
+
+                                                <dt class="col-sm-3">Zone:</dt>
+                                                <dd class="col-sm-9">{{product.zone}}</dd>
+
+                                                <dt class="col-sm-3 text-truncate">Brand</dt>
+                                                <dd class="col-sm-9">{{product.brand}}</dd>
+
+                                                <dt class="col-sm-3">Price</dt>
+                                                <dd class="col-sm-9">{{product.price}}</dd>
+                                            </div>
+                                            <div class="col-sm-2 my-auto">
+                                                <div class="row"></div>
+                                                <a href="{{product.image}}">
+                                                    <img ng-src="{{product.image}}" alt="">
+                                                </a>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div id="{{product.productName}}" class="collapse" aria-labelledby="headingOne">
@@ -60,8 +98,8 @@
                                 </dl>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,11 +107,39 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="text-center font-weight-bold">
-                    <a ng-href="#!/list">
-                        <button style="font-size: 1.8rem" class="btn btn-info mx-auto" ng-click ="addToCart()">ADD</button>
+                    <h6 class="text-worning">Mark your gift and click on the finish button to move into your cart.</h6>
+                    <a>
+                        <!-- ng-href="#!/list"      -->
+                        <input type="button" style="font-size: 1.8rem" ng-click="addChecked()" class="btn btn-success mb-5" value="FINISH">
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
+                        <span ng-if="hoverEdit" class="float-right">
+                            <i class="fas fa-trash" ng-click="deleteTask($index)"></i>
+                        </span>
+                    </li>
+
+                </ul>
+                <div class="row mt-5">
+                    <div class="col-md-12">
+                        <div class="text-center font-weight-bold">
+                            <h6 class="text-worning">Approve your list by the CONFIRM button.</h6>
+                            <a href="#!/mylink">
+                                <button style="font-size: 1.8rem" class="btn btn-info mx-auto">CONFIRM</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body ng-app='myapp'>
+
+    <div ng-controller="fetchCtrl">
+
+        <ul ng-repeat='user in users'>
+            <li>
+                <input type='checkbox' value='{{ user.name }}' ng-model='user.selected'> {{ user.name}} </li>
+        </ul>
+
+        <input type='button' ng-click='checkVal()' value='Click'>
+        <br>
+        <br> Result :
+        <span>{{ result }}</span>
+    </div>
+
+    <!-- Script -->
+    <script>
+        var fetch = angular.module('myapp', []);
+
+        fetch.controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
+
+            // Users list
+            $scope.users = [
+                { id: 1, name: "Yogesh singh" },
+                { id: 2, name: "Sonarika Bhadoria" },
+                { id: 3, name: "Vishal Sahu" },
+                { id: 4, name: "Anil singh" }
+            ];
+
+            // Check checkboxes checked or not
+            $scope.checkVal = function () {
+
+                var checkedUsers = '';
+                $scope.users.forEach(function (user) {
+
+                    if (user.selected) {
+                        if (checkedUsers != '') {
+                            checkedUsers += " , ";
+                        }
+                        checkedUsers += user.name;
+                    }
+                });
+                $scope.result = checkedUsers;
+
+            }
+
+        }]);
+
+    </script>
+
+</body>
+
+</html>

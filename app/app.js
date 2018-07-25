@@ -10,8 +10,8 @@ app.config(function ($routeProvider) {
             controller: 'productCtrl'
         })
         .when("/list", {
-            templateUrl: "app/list/myList.html"
-
+            templateUrl: "app/list/myList.html",
+            controller: 'productCtrl'
         })
         .when("/login", {
             templateUrl: "app/login/login.html"

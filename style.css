@@ -48,6 +48,14 @@ img{
     max-width:100%;
 }
 
+#produntImg{
+    max-width: 40px;
+}
+
+#headingOne{
+    font-size: 1.2em;
+}
+
 #home{
     height: 50vh;
     background-image:  url(app/img/cdcadbe371756c939a4c5596b21704ed.png );
@@ -66,4 +74,16 @@ img{
     background-image: url(app/img/31670456-illustration-pregnancy.jpg);
     background-position: center center;
     max-width:500px;
+}
+
+
+@media (min-width: 275px){
+.col-sm-10 {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+}
+.col-sm-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+}
 }

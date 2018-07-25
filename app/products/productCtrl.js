@@ -1,5 +1,6 @@
 app.controller('productCtrl', function ($scope, $log, productListSrv) {
 
+
     $scope.products = [];
 
     productListSrv.readFile().then(function (products) {
@@ -8,18 +9,29 @@ app.controller('productCtrl', function ($scope, $log, productListSrv) {
         $log.error(error)
     });
 
-    $scope.selected = [];
+    $scope.selectedProducts = [];
 
-    $scope.addToCart = function () {
+    $scope.addChecked = function () {
 
-        for (var i = 0; i < $scope.products.length; i++) {
-            if ($scope.products[i].isActive){
-                console.log($scope.products[i].isActive);
-                
-                // $scope.selected.push($scope.products[i]) 
-        }
-    }
+        $scope.products.forEach(function (product) {
+            if (product.isAddToCart == true) {
+                $scope.selectedProducts.push(product)
+            };
+        });
+        console.log($scope.selectedProducts);
+
     };
 
+    $scope.hoverIn = function () {        
+        $scope.hoverEdit = true;
+    };
+    $scope.hoverOut = function () {
+        $scope.hoverEdit = false;
+    };
+
+
+    $scope.deleteTask = function ($index) {
+        $scope.selectedProducts.splice($index, 1);
+    }
 
 });
