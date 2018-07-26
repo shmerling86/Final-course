@@ -40,12 +40,22 @@ app.factory('productListSrv', function ($http, $q) {
         return async.promise;
     };
 
+    var selectedProducts = [];
     
+    function addChecked() {
+
+       products.forEach(function (product) {
+           if (product.isAddToCart == true) {
+               selectedProducts.push(product)
+           };
+       });
+       return selectedProducts
+   };
   
     
     return {
-        readFile: readFile
-        // addChecked: addChecked
+        readFile: readFile,
+        addChecked: addChecked
         // SERVER: SERVER
     }
 });

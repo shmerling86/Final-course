@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
         })
         .when("/list", {
             templateUrl: "app/list/myList.html",
-            controller: 'productCtrl'
+            controller: 'myListCtrl'
         })
         .when("/login", {
             templateUrl: "app/login/login.html"
