@@ -5,7 +5,7 @@
         <div class="row mt-5">
             <div class="col-sm-8 mx-auto">
                 <ul class="list-group">
-                    <li class="list-group-item mb-1" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
+                    <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
                         <span ng-if="hoverEdit" class="float-right">
                             <i class="fas fa-trash" ng-click="deleteTask($index)"></i>
                         </span>

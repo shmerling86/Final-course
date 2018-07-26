@@ -8,17 +8,11 @@ section{
     padding-top: 120px;
 }
 
-h1{
-    display: block;
-}
+h1{display: block;}
 
-dd{
-    font-size: 0.8em;
-}
+dd{font-size: 0.8em;}
 
-p{
-    line-height: 2em;
-}
+p{line-height: 2em;}
 
 hr { 
     display: block;
@@ -39,33 +33,23 @@ form{
     font-size: 0.5em;
 }
 
+#btn-container  button{width:100%;}
 
-#btn-container  button{
-  width:100%;
-}
+img{max-width:100%;}
 
-img{
-    max-width:100%;
-}
+#produntImg{max-width: 40px;}
 
-#produntImg{
-    max-width: 40px;
-}
-
-#headingOne{
-    font-size: 1em;
-}
+#headingOne{font-size: 1em;}
 
 #home{
-    height: 50vh;
-    background-image:  url(app/img/cdcadbe371756c939a4c5596b21704ed.png );
-    background-repeat: no-repeat;
-    background-position: center center;
-    max-width: 100%;
+    background-image: url(app/img/bg-masthead.jpg);
+    background-size: cover; 
+    font-family: 'Kirang Haerang', cursive;
+    font-size: 1.6em;
+    
 }
 
 #home,#partners{background-color:rgb(248, 249, 250);}
-
 
 #about,#contact{background-color:rgba(232, 229, 229, 0.6);}
 
@@ -76,7 +60,4 @@ img{
     max-width:500px;
 }
 
-
-.col-sm-10 {
-    width: auto;
-}
+.col-sm-10 {width: auto;}
