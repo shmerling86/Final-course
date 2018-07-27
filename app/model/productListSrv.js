@@ -1,10 +1,7 @@
 app.factory('productListSrv', function ($http, $q) {
 
-    // var SERVER = 'https://final-course-xqysoipzwa.now.sh';
-    // var SERVER = 'https://json-server-heroku-xqysoipzwa.now.sh';
-    // https://json-server-jwmubfgmxy.now.sh/#!/
-
-
+    var SERVER = 'https://json-server-heroku-mxzyipueqm.now.sh';
+  
     function Product(productName, description, price, zone, brand, image, isAddToCart) {
         this.productName = productName;
         this.description = description;
@@ -20,14 +17,7 @@ app.factory('productListSrv', function ($http, $q) {
     
     function readFile() {
         var async = $q.defer();
-        $http.get('app/products/products.json').then(function (response) {
-
-        // $http.get(SERVER + '/products').then(function (response) {
-            // console.log(response.data);
-            // for(chunk in response.data){
-            //     console.log(response.data[chunk]);
-                
-            // }
+        $http.get(SERVER + '/products').then(function (response) {         
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image, plainObj.isAddToCart);
                 products.push(product);
@@ -56,7 +46,7 @@ app.factory('productListSrv', function ($http, $q) {
     
     return {
         readFile: readFile,
-        addChecked: addChecked
-        // SERVER: SERVER
+        addChecked: addChecked,
+        SERVER: SERVER
     }
 });
