@@ -20,8 +20,9 @@ app.factory('productListSrv', function ($http, $q) {
     
     function readFile() {
         var async = $q.defer();
-        
         $http.get('app/products/products.json').then(function (response) {
+
+        // $http.get(SERVER + '/products').then(function (response) {
             // console.log(response.data);
             // for(chunk in response.data){
             //     console.log(response.data[chunk]);
