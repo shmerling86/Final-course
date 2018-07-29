@@ -14,7 +14,8 @@ app.config(function ($routeProvider) {
             controller: 'myListCtrl'
         })
         .when("/login", {
-            templateUrl: "app/login/login.html"
+            templateUrl: "app/login/login.html",
+            controller: 'loginCtrl'
 
         })
         .when("/mylink", {
@@ -26,6 +27,9 @@ app.config(function ($routeProvider) {
         .when("/signup", {
             templateUrl: "app/signup/signup.html"
 
+        })
+        .when("/products/:id", {
+        
         })
         .otherwise({
             redirectTo: '/'

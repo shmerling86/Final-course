@@ -1,5 +1,11 @@
-app.controller('productCtrl', function ($scope, $log, productListSrv) {
+app.controller('productCtrl', function ($scope, $log, $location, productListSrv, userSrv) {
 
+
+
+    if(!userSrv.isLoggedIn()){
+        $location.path('/');
+        return
+    }
 
     $scope.products = [];
 
