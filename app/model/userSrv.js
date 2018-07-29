@@ -23,8 +23,10 @@ app.factory('userSrv', function ($http, $q) {
 
     function login(email, password) {
         var async = $q.defer();
-        var loginURL = 'https://json-server-heroku-ffwloyiqam.now.sh' + '/users?email=' + email + "&password=" + password
+        var loginURL = 'https://json-server-heroku-txooxnjdhq.now.sh' + '/users?email=' + email + "&password=" + password
         $http.get(loginURL).then(function (response) {
+            console.log(activeUser);
+            
             if (response.data.length > 0) {
 
                 activeUser = new User(response.data[0]);

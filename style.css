@@ -4,7 +4,7 @@ body{
 }
 
 section{
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 120px;
 }
 
@@ -45,7 +45,7 @@ img{max-width:100%;}
     background-image: url(app/img/bg-masthead.jpg);
     background-size: cover; 
     font-family: 'Kirang Haerang', cursive;
-    font-size: 1.6em;
+    
     
 }
 
@@ -64,4 +64,14 @@ img{max-width:100%;}
 
 #no-outline{
     text-decoration: none;
+}
+
+
+@media screen and (max-width: 980px) {
+    #home {
+        font-size: 0.8em;
+    }
+    #home input {
+        font-size: 0.8em;
+    }
 }
