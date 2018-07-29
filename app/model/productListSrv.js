@@ -16,8 +16,10 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
 
     function readFile() {
+        var products = [];
+
         var async = $q.defer();
-        $http.get(SERVER + '/products').then(function (response) {
+        $http.get('https://json-server-heroku-txooxnjdhq.now.sh' + '/products').then(function (response) {
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image, plainObj.isAddToCart);
                 products.push(product);
@@ -33,40 +35,39 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
     var selectedProducts = [];
 
-        function addChecked() {
+    function addChecked() {
 
-           products.forEach(function (product) {
-               if (product.isAddToCart == true) {
-                   selectedProducts.push(product)
-               };
-           });
-           getActiveUserProducts()
-           return selectedProducts
-       };
-
-    function getActiveUserProducts() {
-        var async = $q.defer();
-
-        var productsUrl = "https://json-server-heroku-ffwloyiqam.now.sh/products?userId=" + userSrv.getActiveUser().id;
-        $http.get(productsUrl).then(function (response) {
-            response.data.forEach(function (selectedProduct) {
-                console.log(userSrv.getActiveUser().id);
-
-                selectedProducts.push(new Product(selectedProduct));
-            })
-            async.resolve(selectedProducts);
-        }, function (err) {
-            async.reject(err);
+        products.forEach(function (product) {
+            if (product.isAddToCart == true) {
+                selectedProducts.push(product)
+            };
         });
+        // getActiveUserProducts()
+        return selectedProducts
+    };
 
-        return async.promise;
-    }
+    // function getActiveUserProducts() {
+    //     var async = $q.defer();
+
+    //     var productsUrl = 'https://json-server-heroku-txooxnjdhq.now.sh' + "/products?userId=" + userSrv.getActiveUser().id;
+    //     $http.get(productsUrl).then(function (response) {
+    //         response.data.forEach(function (selectedProduct) {
+
+    //             selectedProducts.push(new Product(selectedProduct));
+    //         })
+    //         async.resolve(selectedProducts);
+    //     }, function (err) {
+    //         async.reject(err);
+    //     });
+
+    //     return async.promise;
+    // }
 
 
     return {
         readFile: readFile,
         addChecked: addChecked,
-        SERVER: SERVER,
-        getActiveUserProducts: getActiveUserProducts
+        SERVER: SERVER
+        // getActiveUserProducts: getActiveUserProducts
     }
 });

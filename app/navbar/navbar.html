@@ -1,6 +1,6 @@
 
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light  bg-light ">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light  bg-light " ng-controller="navbarCtrl">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -29,14 +29,14 @@
                 </li>
 
 
-                <li class="nav-item" ng-hide="isLoggedIn()">
+                <li class="nav-item" ng-hide="isUserLoggedIn()">
                     <a ng-href="#!/signup" class="nav-link" >SIGN UP</a>
                 </li>
 
-                <li class="nav-item" ng-hide="isLoggedIn()">
+                <li class="nav-item" ng-hide="isUserLoggedIn()">
                     <a ng-href="#!/login" class="nav-link" >LOGIN</a>
                 </li>
-                <li class="nav-item" ng-show="isLoggedIn()">
+                <li class="nav-item" ng-show="isUserLoggedIn()">
                     <a ng-href="javascript:void(0)" class="nav-link" ng-click="logout()">LOGOUT</a>
                 </li>
             </ul>

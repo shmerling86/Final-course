@@ -74,4 +74,8 @@ img{max-width:100%;}
     #home input {
         font-size: 0.8em;
     }
+    /* #home input{
+        display: block;
+    } */
+   
 }
