@@ -66,14 +66,9 @@ img{max-width:100%;}
     text-decoration: none;
 }
 
-
-@media screen and (max-width: 980px) {
-    /* #home {
-        font-size: 0.8em;
-    }
-    #home input {
-        font-size: 0.8em;
-    }
-    */
-   
+.nav-link{
+    border: 1px solid;
+    padding: 5px;
+    box-shadow: 5px 10px;
+    margin-left:1px;
 }
