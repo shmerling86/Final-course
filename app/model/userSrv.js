@@ -1,7 +1,7 @@
 app.factory('userSrv', function ($http, $q) {
 
-    var activeUser = null;
-    // var activeUser = new User({ id: "1", email: 'lior@lior.com', phone: "0525727333", shippingAddress: "hertzel", password: "123" });
+    // var activeUser = null;
+    var activeUser = new User({ id: "1", email: 'lior@lior.com', phone: "0525727333", shippingAddress: "hertzel", password: "123" });
 
 
 
@@ -23,7 +23,7 @@ app.factory('userSrv', function ($http, $q) {
 
     function login(email, password) {
         var async = $q.defer();
-        var loginURL = 'https://json-server-heroku-txooxnjdhq.now.sh' + '/users?email=' + email + "&password=" + password;
+        var loginURL = 'https://json-server-heroku-zngxhoczyh.now.sh' + '/users?email=' + email + "&password=" + password;
 
         $http.get(loginURL).then(function (response) {
             if (response.data.length > 0) {

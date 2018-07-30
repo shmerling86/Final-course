@@ -68,14 +68,12 @@ img{max-width:100%;}
 
 
 @media screen and (max-width: 980px) {
-    #home {
+    /* #home {
         font-size: 0.8em;
     }
     #home input {
         font-size: 0.8em;
     }
-    /* #home input{
-        display: block;
-    } */
+    */
    
 }

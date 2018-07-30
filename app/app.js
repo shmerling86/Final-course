@@ -29,7 +29,7 @@ app.config(function ($routeProvider) {
             templateUrl: "app/signup/signup.html"
 
         })
-        .when("/products/:id", {
+        .when("/users/:id", {
         
         })
         .otherwise({

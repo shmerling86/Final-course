@@ -1,27 +1,27 @@
 app.factory('productListSrv', function ($http, $q, userSrv) {
 
-    var SERVER = 'https://json-server-heroku-txooxnjdhq.now.sh';
+    var SERVER = 'https://json-server-heroku-zngxhoczyh.now.sh';
 
-    function Product(productName, description, price, zone, brand, image, isAddToCart) {
+    function Product(id, productName, description, price, zone, brand, image) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.zone = zone;
         this.brand = brand;
         this.image = image;
-        this.isAddToCart = isAddToCart
+        this.id = id;
     }
 
-    var products = [];
 
 
     function readFile() {
         var products = [];
 
         var async = $q.defer();
-        $http.get('https://json-server-heroku-txooxnjdhq.now.sh' + '/products').then(function (response) {
+        $http.get('https://json-server-heroku-zngxhoczyh.now.sh' + '/products').then(function (response) {
+
             response.data.forEach(function (plainObj) {
-                var product = new Product(plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image, plainObj.isAddToCart);
+                var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image);
                 products.push(product);
 
             }, function (response) {
@@ -33,41 +33,61 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         return async.promise;
     };
 
-    var selectedProducts = [];
+    function getActiveUserProducts() {
+        var selectedProducts = [];
+        var async = $q.defer();
 
-    function addChecked() {
+        var productsIdsUrl = 'https://json-server-heroku-zngxhoczyh.now.sh/users/' + userSrv.getActiveUser().id;
+        $http.get(productsIdsUrl).then(function (response) {
+            response.data.productIds.forEach(function (selectedProductId) {
 
-        products.forEach(function (product) {
-            if (product.isAddToCart == true) {
-                selectedProducts.push(product)
-            };
+                var productIdsDataUrl = "https://json-server-heroku-zngxhoczyh.now.sh/products/" + selectedProductId;
+                $http.get(productIdsDataUrl).then(function (responseInternal) {
+                    responseInternal = responseInternal.data;
+                    selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
+                        responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image))
+
+                    console.log(selectedProducts);
+
+                })
+
+                async.resolve(selectedProducts);
+
+            }, function (responseInternal) {
+                console.error(responseInternal);
+                async.reject([]);
+            });
+
+        }, function (response) {
+            console.error(response);
+            async.reject([]);
         });
-        // getActiveUserProducts()
-        return selectedProducts
-    };
 
-    // function getActiveUserProducts() {
-    //     var async = $q.defer();
+        return async.promise;
+    }
 
-    //     var productsUrl = 'https://json-server-heroku-txooxnjdhq.now.sh' + "/products?userId=" + userSrv.getActiveUser().id;
-    //     $http.get(productsUrl).then(function (response) {
-    //         response.data.forEach(function (selectedProduct) {
+    function updateUserProducts(selectedProducts) {
+        var async = $q.defer();
+        var productsIdsUrl = 'https://json-server-heroku-zngxhoczyh.now.sh/users/' + userSrv.getActiveUser().id;
+        var patch = { productIds : selectedProducts };
 
-    //             selectedProducts.push(new Product(selectedProduct));
-    //         })
-    //         async.resolve(selectedProducts);
-    //     }, function (err) {
-    //         async.reject(err);
-    //     });
+        $http.patch(productsIdsUrl, patch).then(function (response) {
+            
+            async.resolve(response);
 
-    //     return async.promise;
-    // }
+        }, function (responseInternal) {
+            console.error(responseInternal);
+            async.reject([]);
+        });
+        return async.promise;
 
+    }
 
     return {
         readFile: readFile,
-        addChecked: addChecked,
-        SERVER: SERVER
-        // getActiveUserProducts: getActiveUserProducts
+        SERVER: SERVER,
+        getActiveUserProducts: getActiveUserProducts,
+        updateUserProducts: updateUserProducts
     }
+
 });
