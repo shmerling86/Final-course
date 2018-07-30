@@ -10,12 +10,20 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
     $scope.products = [];
 
     productListSrv.readFile().then(function (products) {
+
         $scope.products = products;
+        if(userSrv.getActiveUser().productIds) {
+            userSrv.getActiveUser().productIds.forEach(function(id) {
+                $scope.products[id].selected = true;
+            });
+        }
     }, function (error) {
         $log.error(error)
     });
 
 
+
+    
     $scope.getActiveUserProducts = function () {
         for (var i = 0; i < $scope.products.length; i++) {
             if ($scope.products[i].selected) {
@@ -27,6 +35,7 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
 
 
         productListSrv.updateUserProducts($scope.checkedProducts).then(function (user) {
+
             if (user.data.productIds[0] == $scope.checkedProducts[0]) {
                 $location.path('/list')
             }

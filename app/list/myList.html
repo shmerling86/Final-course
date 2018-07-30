@@ -12,10 +12,16 @@
                     </li>
 
                 </ul>
-                <div class="row mb-5 mt-5">
+                <div ng-if="selectedProducts" class="row mb-5 mt-5">
+                    <div ng-if="selectedProducts.length < 1" class="text-center col-sm-10 mx-auto">
+                        <p  class="alert alert-danger">
+                            You have no products in your list, please <a href="#!/products">Go to shop</a>
+                        </p>
+                    </div>
+
                     <div class="col-sm-12">
                         <div class="text-center font-weight-bold">
-                            <h5 class="text-worning">Approve your list by the CONFIRM button, and get your code.</h5>
+                            <h5 class="text-worning">CONFIRM your list in order to get your code.</h5>
                             <a href="#!/mylink">
                                 <button style="font-size: 1.8rem" class="btn btn-info mx-auto mb-5">CONFIRM</button>
                             </a>

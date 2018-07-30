@@ -33,7 +33,9 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         return async.promise;
     };
 
+
     function getActiveUserProducts() {
+       
         var selectedProducts = [];
         var async = $q.defer();
 
@@ -69,10 +71,12 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
     function updateUserProducts(selectedProducts) {
         var async = $q.defer();
         var productsIdsUrl = 'https://json-server-heroku-zngxhoczyh.now.sh/users/' + userSrv.getActiveUser().id;
-        var patch = { productIds : selectedProducts };
-
+        var patch = { productIds: selectedProducts };
+        if(userSrv.activeUser) {
+            userSrv.activeUser.productIds = selectedProducts;
+        }
         $http.patch(productsIdsUrl, patch).then(function (response) {
-            
+
             async.resolve(response);
 
         }, function (responseInternal) {
