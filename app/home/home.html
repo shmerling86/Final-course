@@ -2,7 +2,7 @@
 </list-navbar>
 
 <section id="home">
-    <div class="container mt-5 ">
+    <div class="container mt-1 ">
         <div class="row ml-5">
             <div class="col-sm-8 mx-auto ">
                 <div class="ml-3 mt-5 font-weight-bold">
@@ -24,11 +24,11 @@
                 </a>
 
                 <a ng-href="#!/signup" id="no-outline">
-                    <input type="button" class="btn btn-outline-danger btn-block mb-1" ng-hide="isUserLoggedIn()" value="I'm New" />
+                    <input type="button" class="btn btn-outline-success btn-block mb-1" ng-hide="isUserLoggedIn()" value="I'm New" />
                 </a>
 
                 <a ng-href="#!/login" id="no-outline">
-                    <input type="button" class="btn btn-outline-danger btn-block" ng-hide="isUserLoggedIn()" value="Edit my list" />
+                    <input type="button" class="btn btn-outline-primary btn-block mb-1" ng-hide="isUserLoggedIn()" value="Edit my list" />
                 </a>
 
                 <a ng-href="#!/list" id="no-outline">
@@ -36,7 +36,7 @@
                 </a>
 
                 <a ng-href="#!/products" id="no-outline">
-                    <input type="button" class="btn btn-outline-danger btn-block" ng-show="isUserLoggedIn()" value="Products" />
+                    <input type="button" class="btn btn-outline-danger btn-block mb-1" ng-show="isUserLoggedIn()" value="Products" />
                 </a>
 
 
@@ -95,7 +95,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Content</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="We want to hear from you.."></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="We want to hear from you.."></textarea>
                     </div>
                     <div class="form-group" id="btn-container">
                         <button type="button" class="btn btn-outline-primary font-weight-bold ">Send</button>
