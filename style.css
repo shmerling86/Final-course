@@ -57,9 +57,12 @@ img{max-width:100%;}
 
 
 #image-hear{
-    background-image: url(app/img/31670456-illustration-pregnancy.jpg);
     background-position: center center;
     max-width:500px;
+    background-image: linear-gradient(rgba(255 ,255, 255, 0.6),rgba(0, 0, 0, 0.6)), url(app/img/31670456-illustration-pregnancy.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
 }
 
 .col-sm-10 {width: auto;}
@@ -73,4 +76,16 @@ img{max-width:100%;}
     padding: 5px;
     box-shadow: 5px 10px;
     margin-left:1px;
+}
+
+@media  screen and (max-width: 600px) {
+    #notForSmallScreens{
+        display: none;
+    }
+    .btn{
+        font-size: 1.2em;
+    }
+    #homeContainer{
+        margin-top: 260px;
+    }
 }
