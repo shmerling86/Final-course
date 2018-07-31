@@ -14,8 +14,8 @@ app.controller('signupCtrl', function ($scope, $location, $log, signupSrv) {
     signupSrv.newUser($scope.email, $scope.password, $scope.confirmPassword, $scope.phone,
         $scope.shippingAddress, $scope.productIds).then(function (newUser) {
 
-            
-            $location.path('/');
+
+            $location.path('/signupApprovment');
 
         }, function (error) {
             $log.error(error)
