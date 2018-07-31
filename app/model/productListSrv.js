@@ -1,6 +1,5 @@
 app.factory('productListSrv', function ($http, $q, userSrv) {
 
-    var SERVER = 'https://json-server-heroku-zngxhoczyh.now.sh';
 
     function Product(id, productName, description, price, zone, brand, image) {
         this.productName = productName;
@@ -18,7 +17,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var products = [];
 
         var async = $q.defer();
-        $http.get('https://json-server-heroku-zngxhoczyh.now.sh' + '/products').then(function (response) {
+        $http.get('https://json-server-heroku-uvkhtymyfo.now.sh' + '/products').then(function (response) {
 
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image);
@@ -39,11 +38,11 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var selectedProducts = [];
         var async = $q.defer();
 
-        var productsIdsUrl = 'https://json-server-heroku-zngxhoczyh.now.sh/users/' + userSrv.getActiveUser().id;
+        var productsIdsUrl = 'https://json-server-heroku-uvkhtymyfo.now.sh/users/' + userSrv.getActiveUser().id;
         $http.get(productsIdsUrl).then(function (response) {
             response.data.productIds.forEach(function (selectedProductId) {
 
-                var productIdsDataUrl = "https://json-server-heroku-zngxhoczyh.now.sh/products/" + selectedProductId;
+                var productIdsDataUrl = "https://json-server-heroku-uvkhtymyfo.now.sh/products/" + selectedProductId;
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
                     responseInternal = responseInternal.data;
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
@@ -70,7 +69,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
     function updateUserProducts(selectedProducts) {
         var async = $q.defer();
-        var productsIdsUrl = 'https://json-server-heroku-zngxhoczyh.now.sh/users/' + userSrv.getActiveUser().id;
+        var productsIdsUrl = 'https://json-server-heroku-uvkhtymyfo.now.sh/users/' + userSrv.getActiveUser().id;
         var patch = { productIds: selectedProducts };
         if(userSrv.activeUser) {
             userSrv.activeUser.productIds = selectedProducts;
@@ -89,7 +88,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
     return {
         readFile: readFile,
-        SERVER: SERVER,
         getActiveUserProducts: getActiveUserProducts,
         updateUserProducts: updateUserProducts
     }
