@@ -22,12 +22,10 @@ app.config(function ($routeProvider) {
         .when("/mylink", {
             templateUrl: "app/mylink/mylink.html",
             controller: 'randomUrlCtrl'
-
-
         })
         .when("/signup", {
-            templateUrl: "app/signup/signup.html"
-
+            templateUrl: "app/signup/signup.html",
+            controller: 'signupCtrl'
         })
         .when("/users/:id", {
         

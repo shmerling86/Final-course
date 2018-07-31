@@ -9,6 +9,7 @@ app.controller('loginCtrl', function ($scope, userSrv, $location) {
         $scope.invalidLogin = false;
         userSrv.login($scope.email, $scope.password).then(function (activeUser) {
             $location.path('/list');
+        
         }, function () {
             $scope.invalidLogin = true;
         })

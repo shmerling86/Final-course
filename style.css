@@ -43,17 +43,15 @@ img{max-width:100%;}
 
 #produntImg{max-width: 40px;}
 
+#partnersImg{max-width: 90px;}
+
 #headingOne{font-size: 1em;}
 
 #home{
     background-image: url(app/img/bg-masthead.jpg);
     background-size: cover; 
     font-family: 'Kirang Haerang', cursive;
-    
-    
 }
-
-/* #home,#partners{background-color:rgb(248, 249, 250);} */
 
 #about,#contact{background-color:rgba(232, 229, 229, 0.6);}
 
