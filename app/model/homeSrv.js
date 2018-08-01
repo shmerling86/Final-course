@@ -16,7 +16,7 @@ app.factory('homeSrv', function ($http, $q) {
 
     function loginWithCode(code) {
         var async = $q.defer();
-        var loginURL = 'https://json-server-heroku-uvkhtymyfo.now.sh/users?code=' + code
+        var loginURL = 'https://json-server-heroku-ehjizqltwi.now.sh/users?code=' + code
 
         $http.get(loginURL).then(function (response) {
             
