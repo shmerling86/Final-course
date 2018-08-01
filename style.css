@@ -88,4 +88,8 @@ img{max-width:100%;}
     #homeContainer{
         margin-top: 150px;
     }
+
+    #produntImg{
+        display: none;
+    }
 }
