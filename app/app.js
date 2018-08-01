@@ -28,12 +28,17 @@ app.config(function ($routeProvider) {
             controller: 'signupCtrl'
         })
         // .when("/users/:id", {
-        
+
         // })
         .when("/signupApprovment", {
             templateUrl: "app/signup/signupApprovment.html",
 
         })
+        .when("/codeApprove", {
+            templateUrl: "app/myLink/codeApprove.html",
+
+        })
+
         .otherwise({
             redirectTo: '/'
         });

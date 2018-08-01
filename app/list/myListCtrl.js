@@ -18,7 +18,6 @@ app.controller('myListCtrl', function ($scope, productListSrv) {
 
     productListSrv.getActiveUserProducts().then(function(selectedProducts) {
         $scope.selectedProducts = selectedProducts;
-        console.log($scope.selectedProducts);
     }, function(err) {
         console.log(err);
     });

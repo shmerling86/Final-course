@@ -47,9 +47,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
                     responseInternal = responseInternal.data;
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
                         responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image))
-
-                    console.log(selectedProducts);
-
                 })
 
                 async.resolve(selectedProducts);

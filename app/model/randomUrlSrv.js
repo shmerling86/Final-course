@@ -1,7 +1,7 @@
-app.factory('randomUrlSrv', function () {
+app.factory('randomUrlSrv', function ($http, $q, userSrv) {
 
-  var text = "";
   function makeid() {
+    var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for (var i = 0; i < 10; i++)
@@ -9,10 +9,24 @@ app.factory('randomUrlSrv', function () {
     return text;
   }
 
-  function addCodeToUserObj() {
-    console.log(text);
-    
-  }
+
+  function addCodeToUserObj(code) {
+    var async = $q.defer();
+
+    var URL = 'https://json-server-heroku-uvkhtymyfo.now.sh/users/' + userSrv.getActiveUser().id
+
+    var patch = {"code": code}
+
+
+      $http.patch(URL, patch).then(function (response) {
+
+        async.resolve(response);
+      }, function (err) {
+        async.reject(err);
+      });
+    return async.promise;
+  };
+
 
   return {
     makeid: makeid,
