@@ -1,6 +1,10 @@
-app.controller('randomUrlCtrl', function ($scope, $location, $log, randomUrlSrv) {
+app.controller('randomUrlCtrl', function ($scope, $location, $log, randomUrlSrv, userSrv) {
 
-
+    if (!userSrv.isLoggedIn()) {
+        $location.path('/');
+        return
+    }
+    
     $scope.showUrl = randomUrlSrv.makeid();
 
 
