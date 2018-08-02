@@ -1,34 +1,20 @@
-app.factory('homeSrv', function ($http, $q) {
-
-    function User(plainUser) {
-        this.code = plainUser.code;
-        this.id = plainUser.id;
-        this.email = plainUser.email;
-        this.phone = plainUser.phone;
-        this.shippingAddress = plainUser.shippingAddress;
-        this.password = plainUser.password;
-        this.productIds = plainUser.productIds;
-    }
-
-
+app.factory('homeSrv', function ($http, $q, productListSrv) {
 
     function loginWithCode(enterCode) {
         var async = $q.defer();
         var loginURL = 'https://json-server-heroku-ehjizqltwi.now.sh/users?code=' + enterCode
 
         $http.get(loginURL).then(function (response) {
-
+            console.log(response.data[0].id);
             for (keys in response.data[0]) {
-
                 if (response.data[0]["code"] == enterCode) {
-                    
-                    async.resolve(response)
+                    var userListItemsIds = response.data[0]["productIds"];
+                    productListSrv.userCodeId = response.data[0].id;
+                    async.resolve(userListItemsIds)
                 } else {
-
                     async.reject(response)
                 }
             }
-
 
         }, function (err) {
             async.reject(err);

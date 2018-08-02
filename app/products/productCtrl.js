@@ -24,7 +24,7 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
 
 
     
-    $scope.getActiveUserProducts = function () {
+    $scope.getUserProducts = function () {
         for (var i = 0; i < $scope.products.length; i++) {
             if ($scope.products[i].selected) {
                 $scope.checkedProducts.push($scope.products[i].id);

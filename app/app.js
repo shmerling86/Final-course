@@ -27,9 +27,6 @@ app.config(function ($routeProvider) {
             templateUrl: "app/signup/signup.html",
             controller: 'signupCtrl'
         })
-        // .when("/users/:id", {
-
-        // })
         .when("/signupApprovment", {
             templateUrl: "app/signup/signupApprovment.html",
 
@@ -40,6 +37,7 @@ app.config(function ($routeProvider) {
         })
         .when("/guestLogin", {
             templateUrl: "app/guestLogin/guestLogin.html",
+            controller: "guestLogin"
 
         })
         .otherwise({

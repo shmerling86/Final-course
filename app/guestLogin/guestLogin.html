@@ -1,6 +1,6 @@
 <list-navbar></list-navbar>
 
-<!-- <section>
+<section>
     <div class="container">
         <div class="row">
             <div class="col-sm-8 mx-auto">
@@ -13,8 +13,7 @@
         <div class="row">
             <div class="col-sm-8 mx-auto">
                 <div class="accordion" id="accordionExample">
-
-                    <div class="card" ng-repeat="product in products | filter : {productName : search}">
+                    <div class="card" ng-repeat="product in userListItems | filter : {productName : search}">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-10">
@@ -108,10 +107,10 @@
             <div class="col-sm-12">
                 <div class="text-center font-weight-bold">
                     <h5 class="text-worning">Mark your gift, and click on the ADD button to move into your list.</h5>
-                        <input type="button" style="font-size: 1.8rem" ng-click="getActiveUserProducts()" class="btn btn-success mb-5" value="ADD">
+                        <input type="button" style="font-size: 1.8rem" ng-click="getUserProducts()" class="btn btn-success mb-5" value="ADD">
                 </div>
             </div>
         </div>
     </div>
 
-</section> -->
+</section>

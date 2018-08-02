@@ -1,5 +1,0 @@
-app.factory('guestLoginSrv', function(){
-
-
-    
-});

@@ -1,4 +1,4 @@
-app.controller('navbarCtrl', function ($scope, userSrv, homeSrv, $location) {
+app.controller('navbarCtrl', function ($scope, userSrv, homeSrv, $location, $timeout) {
 
     
     $scope.logout = function () {
@@ -11,7 +11,7 @@ app.controller('navbarCtrl', function ($scope, userSrv, homeSrv, $location) {
     $scope.loginWithCode = function () {
         homeSrv.loginWithCode($scope.code).then(function (guestUser) {            
         })
-        $location.path('/guestLogin');
+        $timeout(function () {$location.path('/guestLogin')}, 500);
     }
     
     $scope.isUserLoggedIn = function() {
