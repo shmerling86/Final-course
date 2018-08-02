@@ -10,39 +10,36 @@ app.factory('homeSrv', function ($http, $q) {
         this.productIds = plainUser.productIds;
     }
 
-    
-
-    //     function loginWithCode(code) {
-    //         var async = $q.defer();
-    //         var loginURL = 'https://json-server-heroku-ehjizqltwi.now.sh/users?code=' + code
-
-    //         $http.get(loginURL).then(function (response) {
-    //             debugger
-    //             console.log(response.data[0]);
-
-    //         }, function (response) {
-    //             console.error(response);
-    //             async.reject([]);
-    //         });
-    //         async.resolve(response);
-    //     };
-    //     return async.promise;
-    // });
 
 
-    // if (response.data[code] == code) {
-    //     activeUser = new User(response.data[0]);
-    //     async.resolve(activeUser);
-    // } else {
-    //     async.reject('invalid Code!');
-    // }
+    function loginWithCode(enterCode) {
+        var async = $q.defer();
+        var loginURL = 'https://json-server-heroku-ehjizqltwi.now.sh/users?code=' + enterCode
+
+        $http.get(loginURL).then(function (response) {
+
+            for (keys in response.data[0]) {
+
+                if (response.data[0]["code"] == enterCode) {
+                    
+                    async.resolve(response)
+                } else {
+
+                    async.reject(response)
+                }
+            }
 
 
+        }, function (err) {
+            async.reject(err);
+        });
+        return async.promise;
+    };
 
 
     return {
-        // loginWithCode: loginWithCode
-    
+        loginWithCode: loginWithCode
+
     }
 
 });

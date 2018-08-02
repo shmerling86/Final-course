@@ -113,21 +113,21 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
-                <form id="image-hear">
+                <form id="image-hear" ng-controller="contactCtrl">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" placeholder="israel israeli" class="form-control">
+                        <input type="text" placeholder="israel israeli" class="form-control" ng-model="template_params.from_name">
                     </div>
                     <div class="form-group">
                         <label for="Email">Email:</label>
-                        <input type="email" placeholder="israel@israeli.com" class="form-control">
+                        <input type="email" placeholder="israel@israeli.com" class="form-control" ng-model="template_params.from_email">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Content</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="We want to hear from you.."></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" ng-model="template_params.message_html" placeholder="We want to hear from you.."></textarea>
                     </div>
                     <div class="form-group" id="btn-container">
-                        <button type="button" class="btn btn-outline-primary font-weight-bold ">Send</button>
+                        <button type="button" ng-click="sendEmail()" class="btn btn-outline-primary font-weight-bold ">Send</button>
                     </div>
                 </form>
             </div>

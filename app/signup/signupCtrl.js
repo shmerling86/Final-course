@@ -1,9 +1,6 @@
 app.controller('signupCtrl', function ($scope, $location, $log, signupSrv) {
 
-    if (!userSrv.isLoggedIn()) {
-        $location.path('/');
-        return
-    }
+
     
     $scope.email = '';
     $scope.password = '';
