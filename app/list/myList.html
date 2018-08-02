@@ -3,19 +3,23 @@
 <section>
     <div class="container">
         <div class="row mt-5">
+                <div class="col-sm-8 mx-auto p-3" ng-if="!selectedProducts.length < 1">
+                    <a ng-href="#!/products"><i class="fas fa-plus text-danger float-right"  title="Add"></i></a>
+                </div>            
             <div class="col-sm-8 mx-auto">
                 <ul class="list-group">
                     <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
                         <span ng-if="hoverEdit" class="float-right">
-                            <i class="fas fa-trash" ng-click="deleteTask($index)"></i>
+                            <i class="fas fa-trash" ng-click="deleteTask($index)" title="Delete"></i>
                         </span>
                     </li>
-
                 </ul>
+
                 <div ng-if="selectedProducts" class="row mb-5 mt-5">
                     <div ng-if="selectedProducts.length < 1" class="text-center col-sm-10 mx-auto">
-                        <p  class="alert alert-danger">
-                            You have no products in your list, please <a href="#!/products">Go to shop</a>
+                        <p class="alert alert-danger">
+                            You have no products in your list, please
+                            <a href="#!/products">Go to shop</a>
                         </p>
                     </div>
 

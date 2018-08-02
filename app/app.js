@@ -38,7 +38,10 @@ app.config(function ($routeProvider) {
             templateUrl: "app/myLink/codeApprove.html",
 
         })
+        .when("/guestLogin", {
+            templateUrl: "app/guestLogin/guestLogin.html",
 
+        })
         .otherwise({
             redirectTo: '/'
         });
