@@ -5,7 +5,6 @@ app.factory('homeSrv', function ($http, $q, productListSrv) {
         var loginURL = 'https://json-server-heroku-ehjizqltwi.now.sh/users?code=' + enterCode
 
         $http.get(loginURL).then(function (response) {
-            console.log(response.data[0].id);
             for (keys in response.data[0]) {
                 if (response.data[0]["code"] == enterCode) {
                     var userListItemsIds = response.data[0]["productIds"];

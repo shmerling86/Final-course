@@ -13,8 +13,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
     var userCodeId;
 
-
-
     function readFile() {
         var products = [];
 
@@ -67,9 +65,11 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         return async.promise;
     }
 
-    function updateUserProducts(selectedProducts) {
+    function updateUserProducts(selectedProducts, userId) {
+        var id = userId || userSrv.getActiveUser().id;
+
         var async = $q.defer();
-        var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + userSrv.getActiveUser().id;
+        var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
         var patch = { productIds: selectedProducts };
         if (userSrv.activeUser) {
             userSrv.activeUser.productIds = selectedProducts;

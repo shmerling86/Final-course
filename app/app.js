@@ -40,6 +40,11 @@ app.config(function ($routeProvider) {
             controller: "guestLogin"
 
         })
+        .when("/guestList", {
+            templateUrl: "app/guestLogin/guestList.html",
+            controller: "guestLogin"
+
+        })
         .otherwise({
             redirectTo: '/'
         });

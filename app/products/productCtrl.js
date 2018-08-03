@@ -1,7 +1,6 @@
 app.controller('productCtrl', function ($scope, $log, $location, productListSrv, userSrv) {
 
-    $scope.checkedProducts = [];
-
+    
     if (!userSrv.isLoggedIn()) {
         $location.path('/');
         return
@@ -10,7 +9,7 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
     $scope.products = [];
 
     productListSrv.readFile().then(function (products) {
-
+        
         $scope.products = products;
         if(userSrv.getActiveUser().productIds) {
             userSrv.getActiveUser().productIds.forEach(function(id) {
@@ -20,9 +19,10 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
     }, function (error) {
         $log.error(error)
     });
+    
+    
 
-
-
+    $scope.checkedProducts = [];
     
     $scope.getUserProducts = function () {
         for (var i = 0; i < $scope.products.length; i++) {
