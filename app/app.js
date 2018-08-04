@@ -42,7 +42,7 @@ app.config(function ($routeProvider) {
         })
         .when("/guestList", {
             templateUrl: "app/guestLogin/guestList.html",
-            controller: "guestLogin"
+            controller: "guestList"
 
         })
         .otherwise({

@@ -1,25 +1,30 @@
-app.controller('guestListCtrl',function(){
+app.controller('guestList', function ($scope, productListSrv) {
 
-    // $scope.selectedProducts = [];
 
-    // $scope.hoverIn = function () {        
-    //     this.hoverEdit = true;
-    // };
-    // $scope.hoverOut = function () {   
-    //     this.hoverEdit = false;
-    // };
+    $scope.hoverIn = function () {
+        this.hoverEdit = true;
+    };
+    $scope.hoverOut = function () {
+        this.hoverEdit = false;
+    };
+
+    $scope.selectedGifts = productListSrv.checkedProducts;
+
+    $scope.userId = productListSrv.userCodeId;
+
     
-    // $scope.deleteTask = function($index) {
-    //     $scope.selectedProducts.splice($index, 1);
+    // $scope.deleteTask = function () {
+    //     $scope.selectedGifts.splice($index, 1);
     // }
-
-    // productListSrv.getUserProducts().then(function(selectedProducts) {
-    //     $scope.selectedProducts = selectedProducts;
-    // }, function(err) {
-    //     console.log(err);
-    // });
-
-
+    
+    
+    
+    productListSrv.getUserProducts($scope.userId).then(function (selectedGifts) {
+        // console.log(selectedGifts);
+        $scope.selectedGifts = selectedGifts;
+    }, function (err) {
+        console.log(err);
+    });
 
 
 

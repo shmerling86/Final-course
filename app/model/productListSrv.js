@@ -13,6 +13,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
     var userCodeId;
 
+
     function readFile() {
         var products = [];
 
@@ -38,12 +39,12 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
-
         var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
+
         $http.get(productsIdsUrl).then(function (response) {
             response.data.productIds.forEach(function (selectedProductId) {
-
                 var productIdsDataUrl = "https://json-server-heroku-ehjizqltwi.now.sh/products/" + selectedProductId;
+
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
                     responseInternal = responseInternal.data;
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
@@ -66,13 +67,23 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
     }
 
     function updateUserProducts(selectedProducts, userId) {
-        var id = userId || userSrv.getActiveUser().id;
 
+        var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();
         var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
+
+
         var patch = { productIds: selectedProducts };
+        // console.log(userSrv.activeUser);
+
         if (userSrv.activeUser) {
+            console.log(userSrv.activeUser);
+            console.log(selectedProducts);
             userSrv.activeUser.productIds = selectedProducts;
+
+        } else {
+
+            //update the user productids by selectedproducts input            
         }
         $http.patch(productsIdsUrl, patch).then(function (response) {
 

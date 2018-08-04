@@ -9,8 +9,8 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
     $scope.products = [];
 
     productListSrv.readFile().then(function (products) {
-        
         $scope.products = products;
+        
         if(userSrv.getActiveUser().productIds) {
             userSrv.getActiveUser().productIds.forEach(function(id) {
                 $scope.products[id].selected = true;

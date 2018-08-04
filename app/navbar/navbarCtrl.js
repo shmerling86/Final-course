@@ -9,7 +9,8 @@ app.controller('navbarCtrl', function ($scope, userSrv, homeSrv, $location, $tim
     $scope.code = '';
     
     $scope.loginWithCode = function () {
-        homeSrv.loginWithCode($scope.code).then(function (guestUser) {            
+        homeSrv.loginWithCode($scope.code).then(function (userListItemsIds) {   
+            // console.log(userListItemsIds);                     
         })
         $timeout(function () {$location.path('/guestLogin')}, 500);
     }
