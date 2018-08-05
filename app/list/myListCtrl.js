@@ -15,18 +15,16 @@ app.controller('myListCtrl', function ($scope, $location, productListSrv, userSr
 
     $scope.selectedProducts = [];
     
-    $scope.deleteTask = function($index) {
-        $scope.selectedProducts.splice($index, 1);
-    }
-
-    productListSrv.getUserProducts().then(function(selectedProducts) {
-        console.log(selectedProducts);
-        
+    productListSrv.getUserProducts().then(function(selectedProducts) {        
         $scope.selectedProducts = selectedProducts;
     }, function(err) {
         console.log(err);
     });
-
+    
+    
+    $scope.deleteTask = function($index) {
+        $scope.selectedProducts.splice($index, 1);
+    }
 
 
 

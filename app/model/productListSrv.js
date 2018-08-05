@@ -58,7 +58,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
                         responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image))
                 })
-                // console.log(selectedProducts);
 
                 async.resolve(selectedProducts);
 
@@ -76,7 +75,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
     }
 
     function updateUserProducts(selectedProducts, userId) {
-        // console.log(selectedProducts);
 
         var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();

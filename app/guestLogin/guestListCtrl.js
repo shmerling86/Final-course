@@ -16,9 +16,7 @@ app.controller('guestList', function ($scope, $location, productListSrv, guestLi
 
     $scope.userId = productListSrv.userCodeId;
     
-    guestListSrv.getUserProducts($scope.userId).then(function (selectedGifts) {
-        // console.log(selectedGifts);
-        
+    guestListSrv.getUserProducts($scope.userId).then(function (selectedGifts) {        
         $scope.selectedGifts = selectedGifts;
     }, function (err) {
         console.log(err);
