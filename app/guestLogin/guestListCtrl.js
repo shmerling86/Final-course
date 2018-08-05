@@ -1,5 +1,9 @@
-app.controller('guestList', function ($scope, productListSrv) {
+app.controller('guestList', function ($scope, $location, productListSrv, guestListSrv) {
 
+    if (!productListSrv.userCodeId) {
+        $location.path('/');
+        return
+    }
 
     $scope.hoverIn = function () {
         this.hoverEdit = true;
@@ -8,24 +12,20 @@ app.controller('guestList', function ($scope, productListSrv) {
         this.hoverEdit = false;
     };
 
-    $scope.selectedGifts = productListSrv.checkedProducts;
+    $scope.selectedGifts = [];
 
     $scope.userId = productListSrv.userCodeId;
-
     
-    // $scope.deleteTask = function () {
-    //     $scope.selectedGifts.splice($index, 1);
-    // }
-    
-    
-    
-    productListSrv.getUserProducts($scope.userId).then(function (selectedGifts) {
+    guestListSrv.getUserProducts($scope.userId).then(function (selectedGifts) {
         // console.log(selectedGifts);
+        
         $scope.selectedGifts = selectedGifts;
     }, function (err) {
         console.log(err);
     });
 
-
+  $scope.deleteTask = function ($index) {
+        $scope.selectedGifts.splice($index, 1);
+    }
 
 });

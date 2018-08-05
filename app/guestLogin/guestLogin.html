@@ -102,23 +102,25 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div ng-if="userListItems" class="row mb-5 mt-5">
+                <div class="col-sm-8 mx-auto">
+                    <div ng-if="userListItems.length < 1" class="text-center ">
+                        <p class="alert alert-danger">
+                            All gifts are purchased, see you next time.
+                            <a href="#!/">Go Home</a>
+                        </p>
+                    </div>
 
-        <div ng-if="userListItems" class="row mb-5 mt-5">
-                <div ng-if="userListItems.length < 1" class="text-center col-sm-10 mx-auto">
-                    <p class="alert alert-danger">
-                        All gifts are purchased, see you next time.
-                        <a href="#!/">Go Home</a>
-                    </p>
-                </div>
-                
-        <div class="row mt-5">
-            <div class="col-sm-12">
-                <div class="text-center font-weight-bold">
-                    <h5 class="text-worning">Mark your gift, and click on the ADD button to move into your list.</h5>
-                        <input type="button" style="font-size: 1.8rem" ng-click="getUserProducts()" class="btn btn-success mb-5" value="ADD">
+                    <div class="row mt-5 mx-auto">
+                        <div class="col-sm-12">
+                            <div class="text-center font-weight-bold">
+                                <h5 class="text-worning">Mark your gift, and click on the ADD button to confirm your purchase.</h5>
+                                <input type="button" style="font-size: 1.8rem" ng-click="getUserProducts()" class="btn btn-success mb-5" value="ADD">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
 </section>

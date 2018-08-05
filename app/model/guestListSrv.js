@@ -1,5 +1,4 @@
-app.factory('productListSrv', function ($http, $q, userSrv) {
-
+app.factory('guestListSrv', function($http, $q, userSrv){
 
     function Product(id, productName, description, price, zone, brand, image) {
         this.productName = productName;
@@ -11,45 +10,16 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         this.id = id;
     }
 
-    var userCodeId;
-
-
-    function readFile() {
-        var products = [];
-
-        var async = $q.defer();
-        $http.get('https://json-server-heroku-ehjizqltwi.now.sh' + '/products').then(function (response) {
-
-            response.data.forEach(function (plainObj) {
-                var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image);
-                products.push(product);
-
-            }, function (response) {
-                console.error(response);
-                async.reject([]);
-            });
-            async.resolve(products);
-        });
-        return async.promise;
-    };
-
-
     function getUserProducts(userId) {
 
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
         var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
-        // var userProductIdsOrGuestProductIds;
         $http.get(productsIdsUrl).then(function (response) {
 
-            // if (userSrv.getActiveUser()) {
-            //     userProductIdsOrGuestProductIds = response.data.productIds;
-            // }  else {
-            //     userProductIdsOrGuestProductIds = response.data.guestProductIds;
-            // }
 
-            response.data.productIds.forEach(function (selectedProductId) {
+            response.data.guestProductIds.forEach(function (selectedProductId) {
 
                 var productIdsDataUrl = "https://json-server-heroku-ehjizqltwi.now.sh/products/" + selectedProductId;
 
@@ -76,7 +46,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
     }
 
     function updateUserProducts(selectedProducts, userId) {
-        // console.log(selectedProducts);
+        console.log(selectedProducts);
 
         var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();
@@ -103,12 +73,10 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
     }
 
-    return {
-        readFile: readFile,
+    return{
         getUserProducts: getUserProducts,
-        updateUserProducts: updateUserProducts,
-        Product: Product,
-        userCodeId: userCodeId
+        updateUserProducts: updateUserProducts
     }
+
 
 });
