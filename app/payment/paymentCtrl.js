@@ -1,15 +1,15 @@
-app.controller('payment', function ($scope) {
+app.controller('payment', function ($scope, productListSrv, $location, guestListSrv) {
 
-    // if (!productListSrv.userCodeId) {
-    //     $location.path('/');
-    //     return
-    // }
+    if (!productListSrv.userCodeId) {
+        $location.path('/');
+        return
+    }
 
 
     $scope.reduceGift = function () {
-        console.log('Now gifts mark as bought in the user list.');
+        // console.log('Now gifts mark as bought in the user list.');
         
-        return true
+        console.log('selected:'+ guestListSrv.userListItem);
     }
 
 

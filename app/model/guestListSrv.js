@@ -10,23 +10,23 @@ app.factory('guestListSrv', function($http, $q, userSrv){
         this.id = id;
     }
 
-    function getUserGuestProductIds(userId) {
+    // function getUserGuestProductIds(userId) {
 
-        var selectedProducts = [];
-        var async = $q.defer();
-        var id = userId || userSrv.getActiveUser().id;
-        var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
-        $http.get(productsIdsUrl).then(function (response) {
+    //     var selectedProducts = [];
+    //     var async = $q.defer();
+    //     var id = userId || userSrv.getActiveUser().id;
+    //     var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
+    //     $http.get(productsIdsUrl).then(function (response) {
 
-                async.resolve(response.data.guestProductIds);
+    //             async.resolve(response.data.guestProductIds);
 
-        }, function (response) {
-            console.error(response);
-            async.reject([]);
-        });
+    //     }, function (response) {
+    //         console.error(response);
+    //         async.reject([]);
+    //     });
 
-        return async.promise;
-    }
+    //     return async.promise;
+    // }
 
     function getUserGuestFullProducts(userId) {
 
@@ -95,8 +95,8 @@ app.factory('guestListSrv', function($http, $q, userSrv){
 
     return{
         getUserGuestFullProducts: getUserGuestFullProducts,
-        updateUserProducts: updateUserProducts,
-        getUserGuestProductIds: getUserGuestProductIds
+        updateUserProducts: updateUserProducts
+        // getUserGuestProductIds: getUserGuestProductIds
     }
 
 

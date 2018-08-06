@@ -1,8 +1,8 @@
-app.factory('paymentSrv', function(){
+app.factory('paymentSrv', function(guestListSrv){
 
     // function reduceGift(){
 
-    //     console.log('WORK');
+    //     console.log('selcted:'+ guestListSrv.selectedProducts);
         
     // }
 

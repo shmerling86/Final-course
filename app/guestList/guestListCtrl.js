@@ -15,14 +15,14 @@ app.controller('guestList', function ($scope, $location, productListSrv, guestLi
     $scope.selectedGifts = [];
 
     $scope.userId = productListSrv.userCodeId;
-    
-    guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {        
+
+    guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {
         $scope.selectedGifts = selectedGifts;
     }, function (err) {
         console.log(err);
     });
 
-  $scope.deleteTask = function ($index) {
+    $scope.deleteTask = function ($index) {
         $scope.selectedGifts.splice($index, 1);
     }
 
