@@ -1,11 +1,12 @@
 <list-navbar></list-navbar>
-
 <section>
     <div class="container">
         <div class="row mt-5">
-                <div class="col-sm-8 mx-auto p-3" ng-if="!selectedProducts.length < 1">
-                    <a ng-href="#!/products"><i class="fas fa-plus text-danger float-right"  title="Add"></i></a>
-                </div>            
+            <div class="col-sm-8 mx-auto p-3" ng-if="!selectedProducts.length < 1">
+                <a ng-href="#!/products">
+                    <i class="fas fa-plus text-danger float-right" title="Add"></i>
+                </a>
+            </div>
             <div class="col-sm-8 mx-auto">
                 <ul class="list-group">
                     <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
@@ -23,7 +24,7 @@
                         </p>
                     </div>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" ng-if="!selectedProducts.length < 1">
                         <div class="text-center font-weight-bold">
                             <h5 class="text-worning">CONFIRM your list in order to get your code.</h5>
                             <a href="#!/mylink">

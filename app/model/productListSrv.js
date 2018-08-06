@@ -39,22 +39,19 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
+        
         var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
-        // var userProductIdsOrGuestProductIds;
+
         $http.get(productsIdsUrl).then(function (response) {
-
-            // if (userSrv.getActiveUser()) {
-            //     userProductIdsOrGuestProductIds = response.data.productIds;
-            // }  else {
-            //     userProductIdsOrGuestProductIds = response.data.guestProductIds;
-            // }
-
+                
             response.data.productIds.forEach(function (selectedProductId) {
 
                 var productIdsDataUrl = "https://json-server-heroku-ehjizqltwi.now.sh/products/" + selectedProductId;
 
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
+
                     responseInternal = responseInternal.data;
+
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
                         responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image))
                 })

@@ -18,6 +18,13 @@ app.controller('guestList', function ($scope, $location, productListSrv, guestLi
     
     guestListSrv.getUserProducts($scope.userId).then(function (selectedGifts) {        
         $scope.selectedGifts = selectedGifts;
+
+        debugger
+        if($scope.selectedGifts) {
+            $scope.selectedGifts.forEach(function(userId) {
+                $scope.userListItems[userId].selected = true;
+            });
+        }
     }, function (err) {
         console.log(err);
     });

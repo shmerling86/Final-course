@@ -12,12 +12,9 @@ app.controller('guestLogin', function ($scope, $location, productListSrv) {
     //מביא לאורח את המוצרים שהמשתמש סימן
     productListSrv.getUserProducts($scope.userId).then(function (userListItems) {
         
-        $scope.userListItems = userListItems;        
-        if($scope.userListItems) {
-            $scope.userListItems.forEach(function(userId) {
-                $scope.userListItems[userId].selected = true;
-            });
-        }
+        $scope.userListItems = userListItems;    
+            
+       
     }, function (error) {
         $log.error(error)
     });
@@ -30,6 +27,7 @@ app.controller('guestLogin', function ($scope, $location, productListSrv) {
         for (var i = 0; i < $scope.userListItems.length; i++) {
 
             if ($scope.userListItems[i].selected) {
+                $scope.userListItems[i].selected = true
                 $scope.checkedProducts.push($scope.userListItems[i].id);
             } else if ($scope.userListItems[i].selected === false) {
                 $scope.checkedProducts.splice(i);
