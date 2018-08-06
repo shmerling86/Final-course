@@ -41,9 +41,15 @@ app.config(function ($routeProvider) {
 
         })
         .when("/guestList", {
-            templateUrl: "app/guestLogin/guestList.html",
+            templateUrl: "app/guestList/guestList.html",
             controller: "guestList"
-
+        })
+        .when("/payment", {
+            templateUrl: "app/payment/payment.html",
+            controller: "payment"
+        })
+        .when("/payPal", {
+            templateUrl: "app/payment/payPal.html"
         })
         .otherwise({
             redirectTo: '/'

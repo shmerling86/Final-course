@@ -10,7 +10,7 @@ app.factory('guestListSrv', function($http, $q, userSrv){
         this.id = id;
     }
 
-    function getUserProducts(userId) {
+    function getUserGuestProductIds(userId) {
 
         var selectedProducts = [];
         var async = $q.defer();
@@ -18,6 +18,23 @@ app.factory('guestListSrv', function($http, $q, userSrv){
         var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
         $http.get(productsIdsUrl).then(function (response) {
 
+                async.resolve(response.data.guestProductIds);
+
+        }, function (response) {
+            console.error(response);
+            async.reject([]);
+        });
+
+        return async.promise;
+    }
+
+    function getUserGuestFullProducts(userId) {
+
+        var selectedProducts = [];
+        var async = $q.defer();
+        var id = userId || userSrv.getActiveUser().id;
+        var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
+        $http.get(productsIdsUrl).then(function (response) {
 
             response.data.guestProductIds.forEach(function (selectedProductId) {
 
@@ -26,10 +43,14 @@ app.factory('guestListSrv', function($http, $q, userSrv){
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
                     responseInternal = responseInternal.data;
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                        responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image))
+                        responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image));
+
+                    if(selectedProducts.length == response.data.guestProductIds.length) {
+                        async.resolve(selectedProducts);
+                    }
                 })
 
-                async.resolve(selectedProducts);
+                
 
             }, function (responseInternal) {
                 console.error(responseInternal);
@@ -43,6 +64,7 @@ app.factory('guestListSrv', function($http, $q, userSrv){
 
         return async.promise;
     }
+
 
     function updateUserProducts(selectedProducts, userId) {
 
@@ -72,8 +94,9 @@ app.factory('guestListSrv', function($http, $q, userSrv){
     }
 
     return{
-        getUserProducts: getUserProducts,
-        updateUserProducts: updateUserProducts
+        getUserGuestFullProducts: getUserGuestFullProducts,
+        updateUserProducts: updateUserProducts,
+        getUserGuestProductIds: getUserGuestProductIds
     }
 
 

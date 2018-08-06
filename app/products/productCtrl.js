@@ -3,7 +3,7 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
     
     if (!userSrv.isLoggedIn()) {
         $location.path('/');
-        return
+        // return
     }
 
     $scope.products = [];

@@ -39,7 +39,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
-        
+
         var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
 
         $http.get(productsIdsUrl).then(function (response) {
@@ -53,15 +53,20 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
                     responseInternal = responseInternal.data;
 
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                        responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image))
-                })
-
-                async.resolve(selectedProducts);
-
-            }, function (responseInternal) {
-                console.error(responseInternal);
-                async.reject([]);
+                                                responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image));
+                        
+                    // resolve only after going through all products
+                    if(selectedProducts.length == response.data.productIds.length) {
+                        async.resolve(selectedProducts);
+                    }
+                }, function (responseInternal) {
+                    console.error(responseInternal);
+                    async.reject([]);
+                });
             });
+
+
+            
 
         }, function (response) {
             console.error(response);

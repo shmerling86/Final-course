@@ -1,4 +1,4 @@
-app.controller('guestLogin', function ($scope, $location, productListSrv) {
+app.controller('guestLogin', function ($scope, $location, $timeout, productListSrv, guestListSrv) {
 
 
     if (!productListSrv.userCodeId) {
@@ -13,12 +13,25 @@ app.controller('guestLogin', function ($scope, $location, productListSrv) {
     productListSrv.getUserProducts($scope.userId).then(function (userListItems) {
         
         $scope.userListItems = userListItems;    
+        guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {        
+            $scope.selectedGifts = selectedGifts;
             
+            if($scope.selectedGifts) {
+                $scope.selectedGifts.forEach(function(product) {
+                    for(var i=0; i < $scope.userListItems.length; i++) {
+                        if(product.id == $scope.userListItems[i].id) {
+                            $scope.userListItems[i].selected = true;
+                        }
+                    }
+                });
+        }
+    }, function (err) {
+        console.log(err);
+    });
        
     }, function (error) {
         $log.error(error)
     });
-    
 
 
     $scope.checkedProducts = [];
