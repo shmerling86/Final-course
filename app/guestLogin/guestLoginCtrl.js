@@ -1,4 +1,4 @@
-app.controller('guestLogin', function ($scope, $location, $timeout, productListSrv, guestListSrv) {
+app.controller('guestLogin', function ($scope, $location, productListSrv, guestListSrv) {
 
 
     if (!productListSrv.userCodeId) {
@@ -41,6 +41,8 @@ app.controller('guestLogin', function ($scope, $location, $timeout, productListS
 
             if ($scope.userListItems[i].selected) {
                 $scope.userListItems[i].selected = true
+                
+                // console.log(($scope.userListItems[i].id));
                 $scope.checkedProducts.push($scope.userListItems[i].id);
             } else if ($scope.userListItems[i].selected === false) {
                 $scope.checkedProducts.splice(i);

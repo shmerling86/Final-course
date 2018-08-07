@@ -1,6 +1,6 @@
 app.factory('randomUrlSrv', function ($http, $q, userSrv) {
 
-  function makeid() {
+  function makeId() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -13,7 +13,7 @@ app.factory('randomUrlSrv', function ($http, $q, userSrv) {
   function addCodeToUserObj(code) {
     var async = $q.defer();
 
-    var URL = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + userSrv.getActiveUser().id
+    var URL = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + userSrv.getActiveUser().id
 
     var patch = {"code": code}
 
@@ -29,7 +29,7 @@ app.factory('randomUrlSrv', function ($http, $q, userSrv) {
 
 
   return {
-    makeid: makeid,
+    makeId: makeId,
     addCodeToUserObj: addCodeToUserObj
   }
 

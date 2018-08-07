@@ -15,7 +15,7 @@ app.factory('guestListSrv', function($http, $q, userSrv){
     //     var selectedProducts = [];
     //     var async = $q.defer();
     //     var id = userId || userSrv.getActiveUser().id;
-    //     var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
+    //     var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
     //     $http.get(productsIdsUrl).then(function (response) {
 
     //             async.resolve(response.data.guestProductIds);
@@ -33,12 +33,12 @@ app.factory('guestListSrv', function($http, $q, userSrv){
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
-        var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
+        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
         $http.get(productsIdsUrl).then(function (response) {
 
             response.data.guestProductIds.forEach(function (selectedProductId) {
 
-                var productIdsDataUrl = "https://json-server-heroku-ehjizqltwi.now.sh/products/" + selectedProductId;
+                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId;
 
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
                     responseInternal = responseInternal.data;
@@ -70,7 +70,7 @@ app.factory('guestListSrv', function($http, $q, userSrv){
 
         var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();
-        var productsIdsUrl = 'https://json-server-heroku-ehjizqltwi.now.sh/users/' + id;
+        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
 
 
         if (userSrv.getActiveUser()) {
@@ -78,7 +78,6 @@ app.factory('guestListSrv', function($http, $q, userSrv){
             var patch = { productIds: selectedProducts };
         } else {
             var patch = { guestProductIds: selectedProducts };
-            // userSrv.activeUser.guestProductIds = selectedProducts;
         }
 
         $http.patch(productsIdsUrl, patch).then(function (response) {

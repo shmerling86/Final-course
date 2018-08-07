@@ -1,17 +1,17 @@
-app.controller('randomUrlCtrl', function ($scope, $location, $log, randomUrlSrv, userSrv) {
+app.controller('randomUrlCtrl', function(userSrv, $location, $scope, randomUrlSrv, $log){
 
     if (!userSrv.isLoggedIn()) {
         $location.path('/');
         return
     }
-    
-    $scope.showUrl = randomUrlSrv.makeid();
+
+    $scope.showUrl = randomUrlSrv.makeId();
 
 
     $scope.addCodeToUserObj = function () {
 
         randomUrlSrv.addCodeToUserObj($scope.showUrl).then(function (newCode) {
-    
+
                 $location.path('/codeApprove');
     
             }, function (error) {
@@ -20,4 +20,5 @@ app.controller('randomUrlCtrl', function ($scope, $location, $log, randomUrlSrv,
     
     
         }
+
 });
