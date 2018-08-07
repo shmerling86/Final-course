@@ -17,7 +17,12 @@ app.controller('guestList', function ($scope, $location, productListSrv, guestLi
     $scope.userId = productListSrv.userCodeId;
 
     guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {
-        $scope.selectedGifts = selectedGifts;
+
+        if(!selectedGifts[0]["isPaid"]){
+
+            $scope.selectedGifts = selectedGifts;
+        }
+        
     }, function (err) {
         console.log(err);
     });

@@ -1,6 +1,6 @@
-app.factory('guestListSrv', function($http, $q, userSrv){
+app.factory('guestListSrv', function ($http, $q, userSrv) {
 
-    function Product(id, productName, description, price, zone, brand, image) {
+    function Product(id, productName, description, price, zone, brand, image, isPaid) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -8,6 +8,8 @@ app.factory('guestListSrv', function($http, $q, userSrv){
         this.brand = brand;
         this.image = image;
         this.id = id;
+        this.isPaid = isPaid;
+
     }
 
     // function getUserGuestProductIds(userId) {
@@ -35,23 +37,17 @@ app.factory('guestListSrv', function($http, $q, userSrv){
         var id = userId || userSrv.getActiveUser().id;
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
         $http.get(productsIdsUrl).then(function (response) {
-
             response.data.guestProductIds.forEach(function (selectedProductId) {
 
-                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId;
-
+                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId.id;
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
                     responseInternal = responseInternal.data;
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                        responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image));
-
-                    if(selectedProducts.length == response.data.guestProductIds.length) {
+                        responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image, responseInternal.isPaid));
+                    if (selectedProducts.length == response.data.guestProductIds.length) {
                         async.resolve(selectedProducts);
                     }
                 })
-
-                
-
             }, function (responseInternal) {
                 console.error(responseInternal);
                 async.reject([]);
@@ -76,8 +72,26 @@ app.factory('guestListSrv', function($http, $q, userSrv){
         if (userSrv.getActiveUser()) {
             userSrv.getActiveUser().productIds = selectedProducts;
             var patch = { productIds: selectedProducts };
+
         } else {
-            var patch = { guestProductIds: selectedProducts };
+
+            for (var i = 0; i < selectedProducts.length; i++) {
+
+                if (selectedProducts[i]["isPaid"]) {
+                    var patch = {
+                        productIds: selectedProducts,
+                        guestProductIds: selectedProducts
+
+                    }
+                } else {
+                    var patch = {
+                        "guestProductIds": selectedProducts
+                    };
+                }
+            }
+
+
+
         }
 
         $http.patch(productsIdsUrl, patch).then(function (response) {
@@ -92,9 +106,16 @@ app.factory('guestListSrv', function($http, $q, userSrv){
 
     }
 
-    return{
+    function reduceGift() {
+
+
+
+    }
+
+    return {
         getUserGuestFullProducts: getUserGuestFullProducts,
-        updateUserProducts: updateUserProducts
+        updateUserProducts: updateUserProducts,
+        reduceGift: reduceGift
     }
 
 

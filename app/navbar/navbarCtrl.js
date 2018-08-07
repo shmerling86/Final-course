@@ -17,4 +17,5 @@ app.controller('navbarCtrl', function ($scope, userSrv, homeSrv, $location, $tim
     $scope.isUserLoggedIn = function() {
         return userSrv.isLoggedIn();
     }
+
 });

@@ -1,6 +1,6 @@
 app.controller('productCtrl', function ($scope, $log, $location, productListSrv, userSrv) {
 
-    
+
     if (!userSrv.isLoggedIn()) {
         $location.path('/');
         // return
@@ -10,24 +10,35 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
 
     productListSrv.readFile().then(function (products) {
         $scope.products = products;
-        
-        if(userSrv.getActiveUser().productIds) {
-            userSrv.getActiveUser().productIds.forEach(function(id) {
-                $scope.products[id].selected = true;
+
+        if (userSrv.getActiveUser().productIds) {
+            userSrv.getActiveUser().productIds.forEach(function (product) {
+                // console.log(product.id);
+                $scope.products[product.id].selected = true;
             });
-        }
+            
+        } 
+        // else {
+        //     userSrv.getActiveUser().productIds.forEach(function (product) {
+        //         console.log(product.id);
+        //         $scope.products[product.id].selected = false;
+
+        //     });
+        // }
     }, function (error) {
         $log.error(error)
     });
-    
-    
+
+
 
     $scope.checkedProducts = [];
-    
+
     $scope.getUserProducts = function () {
         for (var i = 0; i < $scope.products.length; i++) {
             if ($scope.products[i].selected) {
-                $scope.checkedProducts.push($scope.products[i].id);
+                // console.log($scope.products[i]);
+                
+                $scope.checkedProducts.push($scope.products[i]);
             } else if ($scope.products[i].selected === false) {
                 $scope.checkedProducts.splice(i);
             }
@@ -35,8 +46,8 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
 
 
         productListSrv.updateUserProducts($scope.checkedProducts).then(function (user) {
-
-            if (user.data.productIds[0] == $scope.checkedProducts[0]) {
+            
+            if (user.data.productIds[0].id == $scope.checkedProducts[0].id) {
                 $location.path('/list')
             }
 

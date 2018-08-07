@@ -1,7 +1,7 @@
 app.factory('productListSrv', function ($http, $q, userSrv) {
 
 
-    function Product(id, productName, description, price, zone, brand, image) {
+    function Product(id, productName, description, price, zone, brand, image, isPaid) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -9,6 +9,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         this.brand = brand;
         this.image = image;
         this.id = id;
+        this.isPaid = isPaid;
     }
 
     var userCodeId;
@@ -21,8 +22,10 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         $http.get('https://json-server-heroku-zmsmzandgg.now.sh' + '/products').then(function (response) {
 
             response.data.forEach(function (plainObj) {
-                var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image);
-                products.push(product);
+                var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image, plainObj.isPaid);
+               if(!plainObj.isPaid){
+                   products.push(product);
+               }
 
             }, function (response) {
                 console.error(response);
@@ -43,10 +46,10 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
 
         $http.get(productsIdsUrl).then(function (response) {
-                
+   
             response.data.productIds.forEach(function (selectedProductId) {
 
-                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId;
+                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId.id;
 
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
 

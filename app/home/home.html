@@ -31,9 +31,13 @@
                 <a ng-href="#!/login" id="no-outline">
                     <input type="button" class="btn btn-outline-primary btn-block mb-1" ng-hide="isUserLoggedIn()" value="Edit my list" />
                 </a>
+
+                <!-- <a id="no-outline">
+                    <input type="button" class="btn btn-outline-success btn-block mb-1" ng-click="ShowCode()" ng-show="isUserLoggedIn()" value="My Code" />
+                </a> -->
+
                 <a ng-href="#!/list" id="no-outline">
-                    <input type="button" id="homeContainer" class="btn btn-outline-danger btn-block mb-1" ng-show="isUserLoggedIn()" value="My list"
-                    />
+                    <input type="button" id="homeContainer" class="btn btn-outline-danger btn-block mb-1" ng-show="isUserLoggedIn()" value="My list"/>
                 </a>
 
                 <a ng-href="#!/products" id="no-outline">
@@ -57,7 +61,7 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <input type="text" ng-model="code" class="p-1 text-center" style="font-size: 0.6em;" placeholder="Code Here">
+                    <input type="text" ng-model="code" class="p-1 text-center" style="font-size: 0.6em;" placeholder="Code Here" required autofocus>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

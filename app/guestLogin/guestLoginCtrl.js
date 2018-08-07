@@ -11,24 +11,24 @@ app.controller('guestLogin', function ($scope, $location, productListSrv, guestL
     $scope.userListItems = [];
     //מביא לאורח את המוצרים שהמשתמש סימן
     productListSrv.getUserProducts($scope.userId).then(function (userListItems) {
-        
-        $scope.userListItems = userListItems;    
-        guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {        
+
+        $scope.userListItems = userListItems;
+        guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {
             $scope.selectedGifts = selectedGifts;
-            
-            if($scope.selectedGifts) {
-                $scope.selectedGifts.forEach(function(product) {
-                    for(var i=0; i < $scope.userListItems.length; i++) {
-                        if(product.id == $scope.userListItems[i].id) {
+
+            if ($scope.selectedGifts) {
+                $scope.selectedGifts.forEach(function (product) {
+                    for (var i = 0; i < $scope.userListItems.length; i++) {
+                        if (product.id == $scope.userListItems[i].id) {
                             $scope.userListItems[i].selected = true;
                         }
                     }
                 });
-        }
-    }, function (err) {
-        console.log(err);
-    });
-       
+            }
+        }, function (err) {
+            console.log(err);
+        });
+
     }, function (error) {
         $log.error(error)
     });
@@ -41,18 +41,16 @@ app.controller('guestLogin', function ($scope, $location, productListSrv, guestL
 
             if ($scope.userListItems[i].selected) {
                 $scope.userListItems[i].selected = true
+                $scope.checkedProducts.push($scope.userListItems[i]);
                 
-                // console.log(($scope.userListItems[i].id));
-                $scope.checkedProducts.push($scope.userListItems[i].id);
             } else if ($scope.userListItems[i].selected === false) {
                 $scope.checkedProducts.splice(i);
             }
         }
 
-
-
         productListSrv.updateUserProducts($scope.checkedProducts, $scope.userId).then(function (user) {
-            if (user.data.guestProductIds[0] == $scope.checkedProducts[0]) {
+        
+            if (user.data.guestProductIds[0].id == $scope.checkedProducts[0].id) {
                 $location.path('/guestList')
             }
 

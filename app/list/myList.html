@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-8 mx-auto">
                 <ul class="list-group">
-                    <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-class="{'complete': reduceGift}" ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
+                    <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-class="{'complete': isPaid}" ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
                         <span ng-if="hoverEdit" class="float-right">
                             <i class="fas fa-trash" ng-click="deleteTask($index)" title="Delete"></i>
                         </span>
