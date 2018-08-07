@@ -95,7 +95,6 @@ app.factory('guestListSrv', function($http, $q, userSrv){
     return{
         getUserGuestFullProducts: getUserGuestFullProducts,
         updateUserProducts: updateUserProducts
-        // getUserGuestProductIds: getUserGuestProductIds
     }
 
 

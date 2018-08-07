@@ -88,7 +88,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
             var patch = { productIds: selectedProducts };
         } else {
             var patch = { guestProductIds: selectedProducts };
-            // userSrv.activeUser.guestProductIds = selectedProducts;
         }
 
         $http.patch(productsIdsUrl, patch).then(function (response) {
