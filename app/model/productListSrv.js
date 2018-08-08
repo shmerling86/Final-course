@@ -9,7 +9,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         this.brand = brand;
         this.image = image;
         this.id = id;
-        this.isPaid = isPaid;
+        this.isPaid = false;
     }
 
     var userCodeId;
@@ -22,10 +22,9 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         $http.get('https://json-server-heroku-zmsmzandgg.now.sh' + '/products').then(function (response) {
 
             response.data.forEach(function (plainObj) {
-                var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price, plainObj.zone, plainObj.brand, plainObj.image, plainObj.isPaid);
-               if(!plainObj.isPaid){
-                   products.push(product);
-               }
+                var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price,
+                     plainObj.zone, plainObj.brand, plainObj.image, plainObj.isPaid);
+                    products.push(product);
 
             }, function (response) {
                 console.error(response);
@@ -47,16 +46,18 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
         $http.get(productsIdsUrl).then(function (response) {
    
-            response.data.productIds.forEach(function (selectedProductId) {
+            response.data.productIds.forEach(function (selectedProduct) {
 
-                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId.id;
+                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProduct.id;
 
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
 
                     responseInternal = responseInternal.data;
 
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                                                responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image));
+                                                      responseInternal.price, responseInternal.zone, responseInternal.brand,
+                                                      responseInternal.image, responseInternal.isPaid));
+                        // console.log(selectedProducts);
                         
                     // resolve only after going through all products
                     if(selectedProducts.length == response.data.productIds.length) {

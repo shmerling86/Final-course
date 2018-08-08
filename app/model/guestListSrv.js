@@ -9,26 +9,7 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         this.image = image;
         this.id = id;
         this.isPaid = isPaid;
-
     }
-
-    // function getUserGuestProductIds(userId) {
-
-    //     var selectedProducts = [];
-    //     var async = $q.defer();
-    //     var id = userId || userSrv.getActiveUser().id;
-    //     var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
-    //     $http.get(productsIdsUrl).then(function (response) {
-
-    //             async.resolve(response.data.guestProductIds);
-
-    //     }, function (response) {
-    //         console.error(response);
-    //         async.reject([]);
-    //     });
-
-    //     return async.promise;
-    // }
 
     function getUserGuestFullProducts(userId) {
 
@@ -36,7 +17,9 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
+
         $http.get(productsIdsUrl).then(function (response) {
+
             response.data.guestProductIds.forEach(function (selectedProductId) {
 
                 var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId.id;
@@ -61,9 +44,14 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         return async.promise;
     }
 
+    function updateUserProducts(selectedProducts, userId, userList) {
 
-    function updateUserProducts(selectedProducts, userId) {
-
+        console.log(userList);
+        console.log(selectedProducts);
+        console.log(userId);
+        
+        
+        
         var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
@@ -74,24 +62,9 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
             var patch = { productIds: selectedProducts };
 
         } else {
-
-            for (var i = 0; i < selectedProducts.length; i++) {
-
-                if (selectedProducts[i]["isPaid"]) {
-                    var patch = {
-                        productIds: selectedProducts,
-                        guestProductIds: selectedProducts
-
-                    }
-                } else {
-                    var patch = {
-                        "guestProductIds": selectedProducts
-                    };
-                }
-            }
-
-
-
+            var patch = { guestProductIds: selectedProducts,
+                          productIds: userList 
+                        };
         }
 
         $http.patch(productsIdsUrl, patch).then(function (response) {
@@ -103,20 +76,12 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
             async.reject([]);
         });
         return async.promise;
-
     }
-
-    function reduceGift() {
-
-
-
-    }
+   
 
     return {
-        getUserGuestFullProducts: getUserGuestFullProducts,
-        updateUserProducts: updateUserProducts,
-        reduceGift: reduceGift
-    }
-
+    getUserGuestFullProducts: getUserGuestFullProducts,
+    updateUserProducts: updateUserProducts
+}
 
 });

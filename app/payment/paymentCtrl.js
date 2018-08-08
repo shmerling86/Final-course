@@ -8,6 +8,7 @@ app.controller('payment', function ($scope, productListSrv, $location, guestList
     $scope.userId = productListSrv.userCodeId;
 
     $scope.reduceGift = function () {
+
         guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {
             $scope.selectedGifts = selectedGifts
             for (var i = 0; i < $scope.selectedGifts.length; i++) {
@@ -15,21 +16,30 @@ app.controller('payment', function ($scope, productListSrv, $location, guestList
                     $scope.selectedGifts[i]["isPaid"] = true;
                 }
             }
+            productListSrv.getUserProducts($scope.userId).then(function (userList) {
+                $scope.userList = userList
+                console.log($scope.userList);
+                for (var i = 0; i < $scope.selectedGifts.length; i++) {
+                    for (var j = 0; j < $scope.userList.length; j++) {
+                        if ($scope.userList[j].id === $scope.selectedGifts[i].id) {
+                            $scope.userList[j].isPaid = true
+                        }
+                    }
+                }
+                guestListSrv.updateUserProducts($scope.selectedGifts, $scope.userId, $scope.userList).then(function (user) {
+                    console.log(user);
 
-            guestListSrv.updateUserProducts($scope.selectedGifts, $scope.userId).then(function (user) {
-
-    
+                }, function (error) {
+                    $log.error(error)
+                });
+                
             }, function (error) {
                 $log.error(error)
             });
 
-        }, function (err) {
-            console.log(err);
+        }, function (error) {
+            $log.error(error)
         });
-
     }
-
-
-
 });
 
