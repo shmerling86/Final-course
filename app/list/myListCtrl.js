@@ -17,6 +17,8 @@ app.controller('myListCtrl', function ($scope, $location, productListSrv, userSr
     
     productListSrv.getUserProducts().then(function(selectedProducts) {        
         $scope.selectedProducts = selectedProducts;
+        // console.log($scope.selectedProducts);
+        
     }, function(err) {
         console.log(err);
     });

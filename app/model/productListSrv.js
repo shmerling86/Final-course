@@ -23,8 +23,8 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price,
-                     plainObj.zone, plainObj.brand, plainObj.image, plainObj.isPaid);
-                    products.push(product);
+                    plainObj.zone, plainObj.brand, plainObj.image, plainObj.isPaid);
+                products.push(product);
 
             }, function (response) {
                 console.error(response);
@@ -41,36 +41,37 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
-
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
-
         $http.get(productsIdsUrl).then(function (response) {
-   
             response.data.productIds.forEach(function (selectedProduct) {
 
-                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProduct.id;
+                // if (selectedProduct.isPaid) {
 
+                //     console.log("you have paid gift");
+
+                // } else {
+
+                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProduct.id;
                 $http.get(productIdsDataUrl).then(function (responseInternal) {
 
                     responseInternal = responseInternal.data;
 
                     selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                                                      responseInternal.price, responseInternal.zone, responseInternal.brand,
-                                                      responseInternal.image, responseInternal.isPaid));
-                        // console.log(selectedProducts);
-                        
+                        responseInternal.price, responseInternal.zone, responseInternal.brand,
+                        responseInternal.image, responseInternal.isPaid));
+
                     // resolve only after going through all products
-                    if(selectedProducts.length == response.data.productIds.length) {
+                    if (selectedProducts.length == response.data.productIds.length) {
                         async.resolve(selectedProducts);
                     }
                 }, function (responseInternal) {
                     console.error(responseInternal);
                     async.reject([]);
                 });
+                // }
+
+
             });
-
-
-            
 
         }, function (response) {
             console.error(response);
@@ -85,7 +86,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
-
 
         if (userSrv.getActiveUser()) {
             userSrv.getActiveUser().productIds = selectedProducts;

@@ -46,9 +46,9 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
 
     function updateUserProducts(selectedProducts, userId, userList) {
 
-        console.log(userList);
-        console.log(selectedProducts);
-        console.log(userId);
+        // console.log(userList);
+        // console.log(selectedProducts);
+        // console.log(userId);
         
         
         

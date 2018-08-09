@@ -18,7 +18,7 @@ app.controller('payment', function ($scope, productListSrv, $location, guestList
             }
             productListSrv.getUserProducts($scope.userId).then(function (userList) {
                 $scope.userList = userList
-                console.log($scope.userList);
+                // console.log($scope.userList);
                 for (var i = 0; i < $scope.selectedGifts.length; i++) {
                     for (var j = 0; j < $scope.userList.length; j++) {
                         if ($scope.userList[j].id === $scope.selectedGifts[i].id) {
@@ -27,7 +27,7 @@ app.controller('payment', function ($scope, productListSrv, $location, guestList
                     }
                 }
                 guestListSrv.updateUserProducts($scope.selectedGifts, $scope.userId, $scope.userList).then(function (user) {
-                    console.log(user);
+                    // console.log(user);
 
                 }, function (error) {
                     $log.error(error)
