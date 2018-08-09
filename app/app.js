@@ -28,7 +28,7 @@ app.config(function ($routeProvider) {
             controller: 'signupCtrl'
         })
         .when("/signupApprovment", {
-            templateUrl: "app/signup/signupApprovment.html",
+            templateUrl: "app/signup/signupApprovment.html"
 
         })
         .when("/codeApprove", {
