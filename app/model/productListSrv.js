@@ -9,7 +9,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         this.brand = brand;
         this.image = image;
         this.id = id;
-        this.isPaid = false;
+        this.isPaid = isPaid;
     }
 
     var userCodeId;
@@ -44,34 +44,43 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
         $http.get(productsIdsUrl).then(function (response) {
             response.data.productIds.forEach(function (selectedProduct) {
+                    selectedProducts.push(new Product(selectedProduct.id, selectedProduct.productName, selectedProduct.description,
+                        selectedProduct.price, selectedProduct.zone, selectedProduct.brand,
+                        selectedProduct.image, selectedProduct.isPaid));
 
-                // if (selectedProduct.isPaid) {
+            });
+            async.resolve(selectedProducts);
+            // console.log(selectedProducts);
+            // console.log(response.data.productIds);
+            // response.data.productIds.forEach(function (selectedProduct) {
 
-                //     console.log("you have paid gift");
+            //     // if (selectedProduct.isPaid) {
 
-                // } else {
+            //     //     console.log("you have paid gift");
 
-                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProduct.id;
-                $http.get(productIdsDataUrl).then(function (responseInternal) {
+            //     // } else {
 
-                    responseInternal = responseInternal.data;
+            //     var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProduct.id;
+            //     $http.get(productIdsDataUrl).then(function (responseInternal) {
 
-                    selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                        responseInternal.price, responseInternal.zone, responseInternal.brand,
-                        responseInternal.image, responseInternal.isPaid));
+            //         responseInternal = responseInternal.data;
 
-                    // resolve only after going through all products
-                    if (selectedProducts.length == response.data.productIds.length) {
-                        async.resolve(selectedProducts);
-                    }
-                }, function (responseInternal) {
-                    console.error(responseInternal);
-                    async.reject([]);
-                });
+            //         selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
+            //             responseInternal.price, responseInternal.zone, responseInternal.brand,
+            //             responseInternal.image, responseInternal.isPaid));
+
+            //         // resolve only after going through all products
+            //         if (selectedProducts.length == response.data.productIds.length) {
+            //             async.resolve(selectedProducts);
+            //         }
+            //     }, function (responseInternal) {
+            //         console.error(responseInternal);
+            //         async.reject([]);
+            //     });
                 // }
 
 
-            });
+            // });
 
         }, function (response) {
             console.error(response);
@@ -82,6 +91,31 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
     }
 
     function updateUserProducts(selectedProducts, userId) {
+
+        var id = userId || userSrv.getActiveUser().id;
+        var async = $q.defer();
+        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
+
+        if (userSrv.getActiveUser()) {
+            userSrv.getActiveUser().productIds = selectedProducts;
+            var patch = { productIds: selectedProducts };
+        } else {
+            var patch = { guestProductIds: selectedProducts };
+        }
+
+        $http.patch(productsIdsUrl, patch).then(function (response) {
+
+            async.resolve(response);
+
+        }, function (responseInternal) {
+            console.error(responseInternal);
+            async.reject([]);
+        });
+        return async.promise;
+
+    }
+
+        function updateUserProducts(selectedProducts, userId) {
 
         var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();

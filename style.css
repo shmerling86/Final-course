@@ -48,6 +48,7 @@ img{max-width:100%;}
 #partnersImg{max-width: 90px;}
 
 #headingOne{font-size: 1em;}
+#paidProduct{font-size: 1em;}
 
 #home{
     background-image: url(app/img/bg-masthead.jpg);
@@ -121,8 +122,13 @@ img{max-width:100%;}
     font-size: 0.8em;
 }
 
-
-.complete{
+.complete {
     color:#6c757d;
     text-decoration: line-through;
+    }
+
+    .complete #paidProduct:hover{
+    color:#6c757d;
+    text-decoration: line-through;
+    
     }

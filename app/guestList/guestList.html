@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-8 mx-auto">
                 <ul class="list-group">
-                    <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-repeat="selectedGift in selectedGifts">{{selectedGift.productName}}
+                    <li class="list-group-item" ng-mouseover="hoverIn()" ng-hide="selectedGift.isPaid" ng-mouseleave="hoverOut()" ng-repeat="selectedGift in selectedGifts">{{selectedGift.productName}}
                         <span ng-if="!hoverEdit" class="float-right">
                             {{selectedGift.price}}
                         </span>

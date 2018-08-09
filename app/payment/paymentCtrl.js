@@ -26,8 +26,10 @@ app.controller('payment', function ($scope, productListSrv, $location, guestList
                         }
                     }
                 }
+
+                console.log($scope.selectedGifts);
                 guestListSrv.updateUserProducts($scope.selectedGifts, $scope.userId, $scope.userList).then(function (user) {
-                    // console.log(user);
+                //     // console.log(user);
 
                 }, function (error) {
                     $log.error(error)

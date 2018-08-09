@@ -14,7 +14,8 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
         if (userSrv.getActiveUser().productIds) {
             userSrv.getActiveUser().productIds.forEach(function (product) {
                 // console.log(product.id);
-                $scope.products[product.id].selected = true;
+                product.selected = true;
+                $scope.products[product.id] = product;
             });
             
         } 

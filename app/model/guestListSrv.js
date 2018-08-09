@@ -19,22 +19,31 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
 
         $http.get(productsIdsUrl).then(function (response) {
-
-            response.data.guestProductIds.forEach(function (selectedProductId) {
-
-                var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId.id;
-                $http.get(productIdsDataUrl).then(function (responseInternal) {
-                    responseInternal = responseInternal.data;
-                    selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                        responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image, responseInternal.isPaid));
-                    if (selectedProducts.length == response.data.guestProductIds.length) {
-                        async.resolve(selectedProducts);
-                    }
-                })
-            }, function (responseInternal) {
-                console.error(responseInternal);
-                async.reject([]);
+            console.log("RES DATA:")
+            console.log(response.data)
+            response.data.guestProductIds.forEach(function (guestProduct) {
+                console.log(guestProduct)
+                responseInternal = guestProduct;
+                selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
+                responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image, responseInternal.isPaid));
             });
+            console.log(selectedProducts);
+            async.resolve(selectedProducts);
+        //     response.data.guestProductIds.forEach(function (selectedProductId) {
+
+        //         var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId.id;
+        //         $http.get(productIdsDataUrl).then(function (responseInternal) {
+        //             responseInternal = responseInternal.data;
+        //             selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
+        //                 responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image, responseInternal.isPaid));
+        //             if (selectedProducts.length == response.data.guestProductIds.length) {
+        //                 async.resolve(selectedProducts);
+        //             }
+        //         })
+        //     }, function (responseInternal) {
+        //         console.error(responseInternal);
+        //         async.reject([]);
+        //     });
 
         }, function (response) {
             console.error(response);
@@ -57,15 +66,15 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
 
 
-        if (userSrv.getActiveUser()) {
-            userSrv.getActiveUser().productIds = selectedProducts;
-            var patch = { productIds: selectedProducts };
+        // if (userSrv.getActiveUser()) {
+        //     userSrv.getActiveUser().productIds = selectedProducts;
+        //     var patch = { productIds: selectedProducts };
 
-        } else {
+        // } else {
             var patch = { guestProductIds: selectedProducts,
                           productIds: userList 
                         };
-        }
+        // }
 
         $http.patch(productsIdsUrl, patch).then(function (response) {
 
