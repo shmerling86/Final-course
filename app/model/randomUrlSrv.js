@@ -17,8 +17,7 @@ app.factory('randomUrlSrv', function ($http, $q, userSrv) {
 
     var patch = {"code": code}
 
-
-      $http.patch(URL, patch).then(function (response) {
+    $http.patch(URL, patch).then(function (response) {
 
         async.resolve(response);
       }, function (err) {
