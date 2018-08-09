@@ -32,7 +32,7 @@ app.config(function ($routeProvider) {
 
         })
         .when("/codeApprove", {
-            templateUrl: "app/myLink/codeApprove.html",
+            templateUrl: "app/myLink/codeApprove.html"
 
         })
         .when("/guestLogin", {
