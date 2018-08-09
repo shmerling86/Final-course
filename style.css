@@ -81,12 +81,15 @@ img{max-width:100%;}
 }
 
 @media  screen and (max-width: 600px) {
+
     #notForSmallScreens{
         display: none;
     }
+
     .btn{
         font-size: 1.2em;
     }
+
     #homeContainer{
         margin-top: 150px;
     }
@@ -94,6 +97,19 @@ img{max-width:100%;}
     #produntImg{
         display: none;
     }
+
+    .text-about{
+        font-size: 1.5rem;
+    }
+
+    #font-login{
+        font-size: 1.5rem;
+    }
+
+    .form-control{
+        font-size: 1.5rem;
+    }
+    
 }
 
 #exampleModal{
