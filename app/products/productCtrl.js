@@ -8,12 +8,12 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
 
     $scope.products = [];
 
+
     productListSrv.readFile().then(function (products) {
         $scope.products = products;
 
         if (userSrv.getActiveUser().productIds) {
             userSrv.getActiveUser().productIds.forEach(function (product) {
-                // console.log(product.id);
                 product.selected = true;
                 $scope.products[product.id] = product;
             });

@@ -1,6 +1,6 @@
 app.factory('guestListSrv', function ($http, $q, userSrv) {
 
-    function Product(id, productName, description, price, zone, brand, image, isPaid) {
+    function Product(id, productName, description, price, zone, brand, image, isPaid, buyer) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -9,6 +9,7 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         this.image = image;
         this.id = id;
         this.isPaid = isPaid;
+        this.buyer = buyer
     }
 
     function getUserGuestFullProducts(userId) {
@@ -19,32 +20,14 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
 
         $http.get(productsIdsUrl).then(function (response) {
-            console.log("RES DATA:")
-            console.log(response.data)
             response.data.guestProductIds.forEach(function (guestProduct) {
-                console.log(guestProduct)
-                responseInternal = guestProduct;
-                selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-                responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image, responseInternal.isPaid));
+       
+                selectedProducts.push(new Product(guestProduct.id, guestProduct.productName, guestProduct.description,
+                                    guestProduct.price, guestProduct.zone, guestProduct.brand, guestProduct.image,
+                                    guestProduct.isPaid, guestProduct.buyer));
             });
             console.log(selectedProducts);
             async.resolve(selectedProducts);
-        //     response.data.guestProductIds.forEach(function (selectedProductId) {
-
-        //         var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProductId.id;
-        //         $http.get(productIdsDataUrl).then(function (responseInternal) {
-        //             responseInternal = responseInternal.data;
-        //             selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-        //                 responseInternal.price, responseInternal.zone, responseInternal.brand, responseInternal.image, responseInternal.isPaid));
-        //             if (selectedProducts.length == response.data.guestProductIds.length) {
-        //                 async.resolve(selectedProducts);
-        //             }
-        //         })
-        //     }, function (responseInternal) {
-        //         console.error(responseInternal);
-        //         async.reject([]);
-        //     });
-
         }, function (response) {
             console.error(response);
             async.reject([]);
@@ -55,33 +38,19 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
 
     function updateUserProducts(selectedProducts, userId, userList) {
 
-        // console.log(userList);
-        // console.log(selectedProducts);
-        // console.log(userId);
-        
-        
-        
-        var id = userId || userSrv.getActiveUser().id;
+        var id = userId 
         var async = $q.defer();
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
-
-
-        // if (userSrv.getActiveUser()) {
-        //     userSrv.getActiveUser().productIds = selectedProducts;
-        //     var patch = { productIds: selectedProducts };
-
-        // } else {
-            var patch = { guestProductIds: selectedProducts,
-                          productIds: userList 
-                        };
-        // }
-
+        var patch = { guestProductIds: selectedProducts,
+                      productIds: userList
+                    };
+       
         $http.patch(productsIdsUrl, patch).then(function (response) {
 
             async.resolve(response);
 
-        }, function (responseInternal) {
-            console.error(responseInternal);
+        }, function (guestProduct) {
+            console.error(guestProduct);
             async.reject([]);
         });
         return async.promise;

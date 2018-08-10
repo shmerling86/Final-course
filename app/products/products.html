@@ -18,8 +18,8 @@
                             <div class="row">
                                 <div class="col-sm-10">
                                     <input type="checkbox" ng-model="product.selected" ng-hide="product.isPaid" />
-                                    <button class="btn btn-link" ng-class="{'complete': product.isPaid}" type="button" id="paidProduct" data-toggle="collapse" data-target="#{{product.productName}}"
-                                        aria-expanded="false" aria-controls="{{product.productName}}">
+                                    <button class="btn btn-link" ng-class="{'complete': product.isPaid}" type="button" id="paidProduct" data-toggle="collapse"
+                                        data-target="#{{product.productName}}" aria-expanded="false" aria-controls="{{product.productName}}">
                                         {{product.productName}}
                                     </button>
                                 </div>
@@ -53,6 +53,9 @@
 
                                                 <dt class="col-sm-3">Price</dt>
                                                 <dd class="col-sm-9">{{product.price}}</dd>
+
+                                                <dt class="col-sm-3">Buyer:</dt>
+                                                <dd class="col-sm-9">{{buyer}}</dd>
                                             </div>
                                             <div class="col-sm-2 my-auto">
                                                 <div class="row"></div>
@@ -87,6 +90,9 @@
 
                                         <dt class="col-sm-3">Price</dt>
                                         <dd class="col-sm-9">{{product.price}}</dd>
+
+                                        <dt class="col-sm-3">Buyer:</dt>
+                                        <dd class="col-sm-9">{{buyer}}</dd>
                                     </div>
                                     <div class="col-sm-2 my-auto">
                                         <div class="row"></div>
@@ -107,7 +113,7 @@
             <div class="col-sm-12">
                 <div class="text-center font-weight-bold">
                     <h5 class="text-worning">Mark your wish, and click on the ADD button to move into your list.</h5>
-                        <input type="button" style="font-size: 1.8rem" ng-click="getUserProducts()" class="btn btn-success mb-5" value="ADD">
+                    <input type="button" style="font-size: 1.8rem" ng-click="getUserProducts()" class="btn btn-success mb-5" value="ADD">
                 </div>
             </div>
         </div>

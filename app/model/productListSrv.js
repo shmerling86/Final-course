@@ -1,7 +1,7 @@
 app.factory('productListSrv', function ($http, $q, userSrv) {
 
 
-    function Product(id, productName, description, price, zone, brand, image, isPaid) {
+    function Product(id, productName, description, price, zone, brand, image, isPaid, buyer) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -10,10 +10,10 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         this.image = image;
         this.id = id;
         this.isPaid = isPaid;
+        this.buyer = buyer;
     }
 
     var userCodeId;
-
 
     function readFile() {
         var products = [];
@@ -23,7 +23,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price,
-                    plainObj.zone, plainObj.brand, plainObj.image, plainObj.isPaid);
+                    plainObj.zone, plainObj.brand, plainObj.image, plainObj.isPaid, plainObj.buyer);
                 products.push(product);
 
             }, function (response) {
@@ -35,7 +35,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         return async.promise;
     };
 
-
     function getUserProducts(userId) {
 
         var selectedProducts = [];
@@ -45,43 +44,11 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         $http.get(productsIdsUrl).then(function (response) {
             response.data.productIds.forEach(function (selectedProduct) {
                     selectedProducts.push(new Product(selectedProduct.id, selectedProduct.productName, selectedProduct.description,
-                        selectedProduct.price, selectedProduct.zone, selectedProduct.brand,
-                        selectedProduct.image, selectedProduct.isPaid));
+                                                      selectedProduct.price, selectedProduct.zone, selectedProduct.brand,
+                                                      selectedProduct.image, selectedProduct.isPaid, selectedProduct.buyer));
 
             });
             async.resolve(selectedProducts);
-            // console.log(selectedProducts);
-            // console.log(response.data.productIds);
-            // response.data.productIds.forEach(function (selectedProduct) {
-
-            //     // if (selectedProduct.isPaid) {
-
-            //     //     console.log("you have paid gift");
-
-            //     // } else {
-
-            //     var productIdsDataUrl = "https://json-server-heroku-zmsmzandgg.now.sh/products/" + selectedProduct.id;
-            //     $http.get(productIdsDataUrl).then(function (responseInternal) {
-
-            //         responseInternal = responseInternal.data;
-
-            //         selectedProducts.push(new Product(responseInternal.id, responseInternal.productName, responseInternal.description,
-            //             responseInternal.price, responseInternal.zone, responseInternal.brand,
-            //             responseInternal.image, responseInternal.isPaid));
-
-            //         // resolve only after going through all products
-            //         if (selectedProducts.length == response.data.productIds.length) {
-            //             async.resolve(selectedProducts);
-            //         }
-            //     }, function (responseInternal) {
-            //         console.error(responseInternal);
-            //         async.reject([]);
-            //     });
-                // }
-
-
-            // });
-
         }, function (response) {
             console.error(response);
             async.reject([]);
@@ -115,30 +82,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
     }
 
-        function updateUserProducts(selectedProducts, userId) {
-
-        var id = userId || userSrv.getActiveUser().id;
-        var async = $q.defer();
-        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
-
-        if (userSrv.getActiveUser()) {
-            userSrv.getActiveUser().productIds = selectedProducts;
-            var patch = { productIds: selectedProducts };
-        } else {
-            var patch = { guestProductIds: selectedProducts };
-        }
-
-        $http.patch(productsIdsUrl, patch).then(function (response) {
-
-            async.resolve(response);
-
-        }, function (responseInternal) {
-            console.error(responseInternal);
-            async.reject([]);
-        });
-        return async.promise;
-
-    }
 
     return {
         readFile: readFile,
@@ -146,6 +89,6 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         updateUserProducts: updateUserProducts,
         Product: Product,
         userCodeId: userCodeId
-    }
+        }
 
 });
