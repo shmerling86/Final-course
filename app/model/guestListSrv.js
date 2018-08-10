@@ -13,7 +13,7 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
     }
 
     function getUserGuestFullProducts(userId) {
-
+        
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
@@ -21,12 +21,12 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
 
         $http.get(productsIdsUrl).then(function (response) {
             response.data.guestProductIds.forEach(function (guestProduct) {
-       
+
                 selectedProducts.push(new Product(guestProduct.id, guestProduct.productName, guestProduct.description,
-                                    guestProduct.price, guestProduct.zone, guestProduct.brand, guestProduct.image,
-                                    guestProduct.isPaid, guestProduct.buyer));
+                    guestProduct.price, guestProduct.zone, guestProduct.brand, guestProduct.image,
+                    guestProduct.isPaid, guestProduct.buyer));
             });
-            console.log(selectedProducts);
+            // console.log(selectedProducts);
             async.resolve(selectedProducts);
         }, function (response) {
             console.error(response);
@@ -38,13 +38,13 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
 
     function updateUserProducts(selectedProducts, userId, userList) {
 
-        var id = userId 
+        var id = userId
         var async = $q.defer();
         var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
         var patch = { guestProductIds: selectedProducts,
-                      productIds: userList
-                    };
-       
+            productIds: userList
+        };
+
         $http.patch(productsIdsUrl, patch).then(function (response) {
 
             async.resolve(response);
@@ -55,11 +55,11 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         });
         return async.promise;
     }
-   
+
 
     return {
-    getUserGuestFullProducts: getUserGuestFullProducts,
-    updateUserProducts: updateUserProducts
-}
+        getUserGuestFullProducts: getUserGuestFullProducts,
+        updateUserProducts: updateUserProducts
+    }
 
 });

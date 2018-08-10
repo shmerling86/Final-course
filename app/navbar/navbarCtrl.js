@@ -6,7 +6,7 @@ app.controller('navbarCtrl', function ($scope, userSrv, homeSrv, $location, $tim
         $location.path('/');
     }
     
-    $scope.code = '';
+$scope.code = '';
     
     $scope.loginWithCode = function () {
         homeSrv.loginWithCode($scope.code).then(function (userListItemsIds) {   
