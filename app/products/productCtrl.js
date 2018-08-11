@@ -53,9 +53,9 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
 
         productListSrv.updateUserProducts($scope.checkedProducts).then(function (user) {
 
-            if (user.data.productIds[0].id == $scope.checkedProducts[0].id) {
+            // if (user.data.productIds[0].id == $scope.checkedProducts[0].id) {
                 $location.path('/list')
-            }
+            // }
 
         }, function (error) {
             $log.error(error)
