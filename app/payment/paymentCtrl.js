@@ -5,7 +5,7 @@ app.controller('payment', function ($scope, productListSrv, $location, guestList
         return
     }
 
-    $scope.buyer = 'Unknwn buyer';
+    $scope.buyer = '';
 
     $scope.userId = productListSrv.userCodeId;
 

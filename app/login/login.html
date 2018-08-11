@@ -20,7 +20,7 @@
           <input type="email" id="inputEmail" class="form-control mb-1" ng-model="email" placeholder="Email address" required >
           <label for="inputPassword" class="sr-only ">Password</label>
           <input type="password" id="inputPassword" class="form-control mb-3" ng-model="password" placeholder="Password" required>
-          <button class="btn btn-lg btn-danger btn-block" type="button" ng-click="login()">Sign in</button>
+          <button class="btn btn-lg btn-danger btn-block" type="button" data-ng-disabled="myForm.$invalid" ng-click="myForm.$invalid=true;login()">Sign in</button>
         </form>
       </div>
     </div>
