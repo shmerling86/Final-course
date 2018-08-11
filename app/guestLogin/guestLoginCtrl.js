@@ -50,9 +50,9 @@ app.controller('guestLogin', function ($scope, $location, productListSrv, guestL
 
         productListSrv.updateUserProducts($scope.checkedProducts, $scope.userId).then(function (user) {
         
-            if (user.data.guestProductIds[0].id == $scope.checkedProducts[0].id) {
+            // if (user.data.guestProductIds[0].id == $scope.checkedProducts[0].id) {
                 $location.path('/guestList')
-            }
+            // }
 
         }, function (error) {
             $log.error(error)
