@@ -30,4 +30,13 @@ app.controller('guestList', function ($scope, $location, productListSrv, guestLi
         
     }
 
+    $scope.checkIfListEmpty = function () {
+        for (var i = 0; i < $scope.selectedGifts.length; i++) {
+            if (!$scope.selectedGifts[i].isPaid) {
+                return true; 
+            }
+        }
+        return false;
+    }
+
 });

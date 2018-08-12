@@ -34,6 +34,16 @@ app.controller('guestLogin', function ($scope, $location, productListSrv, guestL
     });
 
 
+    $scope.checkIfListEmpty = function () {
+        for (var i = 0; i < $scope.userListItems.length; i++) {
+            if (!$scope.userListItems[i].isPaid) {
+                return true; 
+            }
+        }
+        return false;
+    }
+
+
     $scope.checkedProducts = [];
     // עובר על המערך של המשתמש אם המתנה סומנה אז מצרף למערך חדש אחרת מסיר 
     $scope.getUserProducts = function () {
@@ -42,16 +52,16 @@ app.controller('guestLogin', function ($scope, $location, productListSrv, guestL
             if ($scope.userListItems[i].selected) {
                 $scope.userListItems[i].selected = true
                 $scope.checkedProducts.push($scope.userListItems[i]);
-                
+
             } else if ($scope.userListItems[i].selected === false) {
                 $scope.checkedProducts.splice(i);
             }
         }
 
         productListSrv.updateUserProducts($scope.checkedProducts, $scope.userId).then(function (user) {
-        
+
             // if (user.data.guestProductIds[0].id == $scope.checkedProducts[0].id) {
-                $location.path('/guestList')
+            $location.path('/guestList')
             // }
 
         }, function (error) {
