@@ -13,7 +13,7 @@ app.factory('randomUrlSrv', function ($http, $q, userSrv) {
   function addCodeToUserObj(code) {
     var async = $q.defer();
 
-    var URL = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + userSrv.getActiveUser().id
+    var URL = 'https://json-server-heroku-kycjbhiagv.now.sh/users/' + userSrv.getActiveUser().id
 
     var patch = {"code": code}
 

@@ -19,7 +19,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var products = [];
 
         var async = $q.defer();
-        $http.get('https://json-server-heroku-zmsmzandgg.now.sh' + '/products').then(function (response) {
+        $http.get('https://json-server-heroku-kycjbhiagv.now.sh' + '/products').then(function (response) {
 
             response.data.forEach(function (plainObj) {
                 var product = new Product(plainObj.id, plainObj.productName, plainObj.description, plainObj.price,
@@ -40,7 +40,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
-        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
+        var productsIdsUrl = 'https://json-server-heroku-kycjbhiagv.now.sh/users/' + id;
         $http.get(productsIdsUrl).then(function (response) {
             response.data.productIds.forEach(function (selectedProduct) {
                     selectedProducts.push(new Product(selectedProduct.id, selectedProduct.productName, selectedProduct.description,
@@ -61,7 +61,7 @@ app.factory('productListSrv', function ($http, $q, userSrv) {
 
         var id = userId || userSrv.getActiveUser().id;
         var async = $q.defer();
-        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
+        var productsIdsUrl = 'https://json-server-heroku-kycjbhiagv.now.sh/users/' + id;
 
         if (userSrv.getActiveUser()) {
             userSrv.getActiveUser().productIds = selectedProducts;

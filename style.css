@@ -81,7 +81,35 @@ img{max-width:100%;}
     margin-left:1px;
 }
 
-@media  screen and (max-width: 600px) {
+
+#txt-list{
+    font-size: 0.7em;
+}
+
+#txt-list-product{
+    font-size: 1.0em;
+}
+
+#exampleModal{
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.alert{
+    font-size: 0.8em;
+}
+
+.complete {
+    color:#6c757d;
+    text-decoration: line-through;
+    }
+
+    .complete #paidProduct:hover{
+    color:#6c757d;
+    text-decoration: line-through;
+    
+    }
+
+@media  screen and (max-width: 500px) {
 
     #notForSmallScreens{
         display: none;
@@ -111,25 +139,13 @@ img{max-width:100%;}
         font-size: 1.5rem;
     }
 
-   
-}
-
-#exampleModal{
-
-    font-family: 'Shadows Into Light', cursive;
-}
-
-.alert{
-    font-size: 0.8em;
-}
-
-.complete {
-    color:#6c757d;
-    text-decoration: line-through;
+    #txt-list{
+        font-size: 0.6em;
     }
 
-    .complete #paidProduct:hover{
-    color:#6c757d;
-    text-decoration: line-through;
-    
-    }
+   #txt-list-product{
+        font-size: 0.9em;
+   }
+
+}
+

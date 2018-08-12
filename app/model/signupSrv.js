@@ -3,7 +3,7 @@ app.factory('signupSrv', function ($http, $q) {
     function newUser(email, password, confirmPassword, phone, shippingAddress, productIds, guestProductIds) {
         var async = $q.defer();
 
-        var signupURL = 'https://json-server-heroku-zmsmzandgg.now.sh/users';
+        var signupURL = 'https://json-server-heroku-kycjbhiagv.now.sh/users';
         var patch = {
             email: email,
             phone: phone,

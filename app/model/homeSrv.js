@@ -2,7 +2,7 @@ app.factory('homeSrv', function ($http, $q, productListSrv) {
 
     function loginWithCode(enterCode) {
         var async = $q.defer();
-        var loginURL = 'https://json-server-heroku-zmsmzandgg.now.sh/users?code=' + enterCode
+        var loginURL = 'https://json-server-heroku-kycjbhiagv.now.sh/users?code=' + enterCode
 
         $http.get(loginURL).then(function (response) {
             

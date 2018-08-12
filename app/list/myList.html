@@ -10,12 +10,11 @@
             <div class="col-sm-8 mx-auto">
                 <ul class="list-group">
                     <li class="list-group-item" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" ng-class="{'complete': selectedProduct.isPaid}"
-                        ng-repeat="selectedProduct in selectedProducts">{{selectedProduct.productName}}
-                        <span ng-if="hoverEdit" class="float-right">
+                        ng-repeat="selectedProduct in selectedProducts" id="txt-list-product">{{selectedProduct.productName}}
+                        <span ng-if="hoverEdit" class="float-right ">
                             <i class="fas fa-trash" ng-hide="selectedProduct.buyer" ng-click="deleteTask($index)" title="Delete"></i>
                         </span>
-                        <span ng-show="selectedProduct.buyer" class="float-right mx-3 my-3 " style="font-size:0.6em;
-                        ">Purchased by: {{selectedProduct.buyer}}</span>
+                        <span title="Purchased by:" ng-show="selectedProduct.buyer" class="float-right my-2 text-dark" id="txt-list">{{selectedProduct.buyer}}</span>
                     </li>
                 </ul>
 

@@ -17,7 +17,8 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
         var selectedProducts = [];
         var async = $q.defer();
         var id = userId || userSrv.getActiveUser().id;
-        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
+        
+        var productsIdsUrl = 'https://json-server-heroku-kycjbhiagv.now.sh/users/' + id;
 
         $http.get(productsIdsUrl).then(function (response) {
             response.data.guestProductIds.forEach(function (guestProduct) {
@@ -40,7 +41,7 @@ app.factory('guestListSrv', function ($http, $q, userSrv) {
 
         var id = userId
         var async = $q.defer();
-        var productsIdsUrl = 'https://json-server-heroku-zmsmzandgg.now.sh/users/' + id;
+        var productsIdsUrl = 'https://json-server-heroku-kycjbhiagv.now.sh/users/' + id;
         var patch = { guestProductIds: selectedProducts,
             productIds: userList
         };
