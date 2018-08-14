@@ -18,7 +18,6 @@ app.controller('guestList', function ($scope, $location, productListSrv, guestLi
 
     guestListSrv.getUserGuestFullProducts($scope.userId).then(function (selectedGifts) {
         $scope.selectedGifts = selectedGifts;
-        // console.log(selectedGifts);
         
     }, function (err) {
         console.log(err);
@@ -26,7 +25,6 @@ app.controller('guestList', function ($scope, $location, productListSrv, guestLi
 
     $scope.deleteTask = function ($index) {
         $scope.selectedGifts.splice($index, 1);
-        console.log( $scope.selectedGifts);
         
     }
 

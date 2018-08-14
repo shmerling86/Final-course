@@ -24,13 +24,7 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
             });
 
         }
-        // else {
-        //     userSrv.getActiveUser().productIds.forEach(function (product) {
-        //         console.log(product.id);
-        //         $scope.products[product.id].selected = false;
-
-        //     });
-        // }
+      
     }, function (error) {
         $log.error(error)
     });
@@ -42,7 +36,6 @@ app.controller('productCtrl', function ($scope, $log, $location, productListSrv,
     $scope.getUserProducts = function () {
         for (var i = 0; i < $scope.products.length; i++) {
             if ($scope.products[i].selected) {
-                // console.log($scope.products[i]);
 
                 $scope.checkedProducts.push($scope.products[i]);
             } else if ($scope.products[i].selected === false) {

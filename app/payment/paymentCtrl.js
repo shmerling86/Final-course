@@ -22,7 +22,6 @@ app.controller('payment', function ($scope, productListSrv, $location, guestList
             }
             productListSrv.getUserProducts($scope.userId).then(function (userList) {
                 $scope.userList = userList
-                // console.log($scope.userList);
                 for (var i = 0; i < $scope.selectedGifts.length; i++) {
                     for (var j = 0; j < $scope.userList.length; j++) {
                         if ($scope.userList[j].id === $scope.selectedGifts[i].id) {
